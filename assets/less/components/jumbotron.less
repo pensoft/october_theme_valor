@@ -9,13 +9,15 @@
 
 .intro_content{
     padding: 0;
+    margin: 70px auto 50px auto!important;
     .container{
         padding: 0;
+
 
         p{
             color: #807871;
             text-align: center;
-            font-family: Arial;
+
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
@@ -30,8 +32,16 @@
     }
 }
 
+.mission{
+    h1{
+        text-align: center;
+        width: 100%;
+    }
+}
+
 
 .pollinators_bees{
+    padding-top: 0;
     .pollinators{
         overflow: hidden;
         position: relative;
@@ -362,6 +372,7 @@
         ul{
             list-style-type: none;
             padding: 0;
+            padding-left: 0!important;
             margin: 0;
             display: flex;
             justify-content: space-between;
@@ -380,7 +391,7 @@
                 line-height: 26px; /* 130% */
                 letter-spacing: -0.2px;
                 position: relative;
-                max-width: calc(~'100% - 85px');
+                max-width: calc(~'35% - 85px');
 
                 &:before{
                     content: '';
@@ -455,6 +466,9 @@
         position: relative;
         top: -50vh; //child height
         z-index: 99;
+        .breakpoint-laptop-down({
+            position: unset;
+        });
         .login_form_container{
             position: absolute;
             top: 50%;
@@ -464,25 +478,31 @@
             border: 1px solid rgba(255, 255, 255, 0.10);
             background: rgba(255, 255, 255, 0.28);
             backdrop-filter: blur(2px);
-            width: 378px;
+            width: 370px;
             max-width: 95%;
-            height: 50vh;
+            height: 408px;
+            max-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             padding: 2px;
+            z-index: 3;
 
             .login_form_content{
                 border-radius: 20px;
                 background: white;
-                width: calc(~'100% - 60px');
-                height: calc(~'100% - 60px');
+                //width: calc(~'100% - 60px');
+                //height: calc(~'100% - 60px');
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 padding: 30px;
+                width: 310px;
+                height: 408px;
+                max-width: 83%;
+
                 .row{
                     width: 100%;
                 }
@@ -528,7 +548,7 @@
                     font-weight: 100;
                     font-size: 14px;
                     border-radius: 8px!important;
-                    border: 1px solid #B3B6B8;
+                    border: 1px solid #EEEEEE;
                     display: flex;
                     padding: 13px 16px;
                     align-items: center;
@@ -669,33 +689,15 @@
 .event-attendance-form,
 .internal-documents,
 .mailing{
+    background: #F2F3F4;
     .container{
         //margin-top: 30px;
     }
 
 }
-//
-//
-//.profile {
-//    .container {
-//        //top: -60vh; //child height
-//        top: 100px;
-//
-//        .login_form_container {
-//            position: relative;
-//            top: unset;
-//            left: unset;
-//            transform: unset;
-//            //top: 50%;
-//            //left: 50%;
-//            //transform: translate(-50%, -50%);
-//            width: 80vw;
-//            max-width: 95%;
-//            height: 60vh;
-//        }
-//
-//        .ui.form .fields{
-//            flex-direction: unset;
-//        }
-//    }
-//}
+
+.profile{
+    form{
+        width: 100%;
+    }
+}

@@ -1,5 +1,11 @@
-$(window).scroll(animateTestimonial);
+
 var viewed = false;
+var viewed_subscribe = false;
+
+window.onscroll = function() {
+    animateTestimonial()
+    animateSubscribe()
+}
 
 var width = window.innerWidth;
 
@@ -29,6 +35,14 @@ function animateTestimonial(){
     }
 }
 
+function animateSubscribe(){
+    var el = $(".subscriber h1");
+    if (isScrolledIntoView(el) && !viewed_subscribe) {
+        viewed_subscribe = true;
+        animateSubtitleWords(el);
+    }
+}
+
 
 function elementScrolled(elem) {
     var docViewTop = $(window).scrollTop();
@@ -40,8 +54,6 @@ function elementScrolled(elem) {
 
 $(window).scroll(function(){
     // This is then function used to detect if the element is scrolled into view
-
-
     if(elementScrolled('.about_vector1 path')) {
         $('.about_vector1 path').addClass('scrolled');
     }else{
@@ -59,6 +71,11 @@ $(window).scroll(function(){
     }else{
         $('.about_vector3 path').removeClass('scrolled');
     }
+
+
+    animateSubscribe();
+
+
 });
 
 
@@ -294,13 +311,6 @@ $(document).ready(function() {
 	$('.nav.nav-pills').removeAttr('id');
 
 	var count = $("h1").text().length;
-
-    if (width >= 1024) {
-        $('#objectives').attr('data-aos', 'fade-right');
-        $('#work-packages').attr('data-aos', 'fade-right')
-        $('.subscriber').attr('data-aos', 'fade-right')
-        $('.insects').attr('data-aos', 'fade-right')
-    }
 
 	$('.see_all_partners_link').hide();
 

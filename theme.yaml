@@ -300,6 +300,7 @@ form:
                 options:
                     arial: Arial
                     muli: Muli
+                    liberationsans: LiberationSans
             background:
                 label: Background color
                 comment: Select a custom color to use as background

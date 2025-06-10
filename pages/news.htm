@@ -133,7 +133,7 @@ $this['related'] = $related;
                 <div class="row">
                     <div class="col-xs-12">
                         {% if article.cover %}
-                        <img src="{{ article.cover|crop_image|resize(554, auto, { mode: 'crop' }) }}" />
+                        <img src="{{ article.cover|crop_image|resize(554, 380, { mode: 'crop' }) }}" />
                         <div class="blur_filter"></div>
                         {% endif %}
                         {% if article.caption %}
