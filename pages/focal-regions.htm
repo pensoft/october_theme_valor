@@ -1,0 +1,50 @@
+url = "/focal-regions"
+layout = "default"
+title = "FOCAL REGIONS"
+
+[siteSearchInclude]
+
+[jumbotron about]
+jumbotron = "about"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+<?php
+use Pensoft\Accordions\Models\Item;
+
+    function onStart(){
+        $this['regions'] = Item::where('category_id', 2)->get();
+    }
+?>
+==
+{% component 'siteSearchInclude' %}
+    <div class="container">
+        <div class="row top-xs">
+            <div class="col-md-4 col-xs-12">
+                {% component 'about' %}
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <span class="tooltiptext" id="tooltip">Bulgaria</span>
+                {% partial 'components/pilots_map' %}
+            </div>
+        </div>
+
+        <div class="row top-xs pilots">
+            {% for key, item in regions %}
+                <div class="accordion-border key_{{key}}"><!-- 1 --><!-- css 1 -->
+                    <div class="row accordion-toggle">
+                        <div class="col-xs-10 start-xs title_container"><span class="number">{{key + 1}}</span> {{item.title}}, {{item.prefix}}</div>
+                        <div class="col-xs-2 end-xs-xs flag_container"><div class="flag-{{item.prefix}}"></div> </div>
+                        <div class="col-xs-12 plusminus"><span class="plus">READ MORE</span></div>
+                    </div>
+
+                    <div class="accordion-content" style="display: none;">
+                        {{item.body|raw}}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>

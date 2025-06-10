@@ -1,0 +1,104 @@
+url = "/media-center/images"
+layout = "default"
+title = "Images"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[builderList mediaImagesList]
+modelClass = "pensoft\Media\Models\Graphic"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[jumbotron]
+jumbotron = "under-construction"
+title = 1
+background = "transperant"
+templates = "template1"
+description_limit = 0
+==
+<?php
+use Pensoft\Media\Models\Graphic;
+use System\Models\File;
+
+function onStart(){
+	$this['mediaImagesList'] =  Graphic::get();
+if(get('download')){
+$file = File::find((int)get('download'));
+$file_name = $file->getLocalPath();
+$recordName = get('file_name') ? get('file_name') : 'VALOR_image';
+$ext= $file->getExtension();
+
+if (file_exists($file_name)) {
+header('Content-Description: File Transfer');
+header('Content-Type: application/octet-stream');
+header("Content-Type: application/force-download");
+header('Content-Disposition: attachment; filename='.$recordName .'.'. $ext);
+header('Content-Transfer-Encoding: binary');
+header('Expires: 0');
+header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+header('Pragma: public');
+header('Content-Length: ' . filesize($file_name));
+ob_clean();
+flush();
+readfile($file_name);
+exit();
+}
+return Redirect::to('/media-center/images');
+}
+}
+
+
+function onDownloadFile(){
+$file = File::find(post('id'));
+$pathToFile = $file->getLocalPath();
+$fileName = $file->file_name;
+$fileType = $file->content_type;
+$headers = [
+'HTTP/1.1 200 OK',
+'Pragma: public',
+'Content-Type: '.$fileType,
+'Content-Type: application/force-download'
+];
+
+return Response::download($pathToFile, $fileName, $headers);
+}
+?>
+==
+
+{% set records = mediaImagesList %}
+
+<div class="container media-images-container">
+
+    {% if records.count() %}
+    <div class="row">
+        <div class="col-md-12 col-xs-12 mb-2">
+            <a href="/media-center" class="go-back-link">Back</a>
+        </div>
+        {% for record in records %}
+
+        <div class="col-md-4 col-xs-12 mb-4">
+            <div class="logo-item">
+                <div class="logo-container {{record.name|slug}} {{record.name}}">
+                    <img src="{{record.image.path}}" title="{{record.name}}" alt="{{record.name}}">
+                </div>
+                <div class="record_name">{{record.name}}</div>
+                <div class="links">
+                    {% if record.file %}
+                    <a href="{{record.file.path}}" target="_blank" data-attach-loading class="btn btn-primary"><i></i> Download</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        {{ noRecordsMessage }}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+

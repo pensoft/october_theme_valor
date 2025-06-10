@@ -1,0 +1,105 @@
+url = "/"
+layout = "default"
+title = "VALOR"
+is_hidden = 0
+meta_description = "homepage desc"
+seo_keywords = "keywords"
+robot_index = "index"
+robot_follow = "follow"
+
+
+[jumbotron intro]
+jumbotron = "vision-behind-everything"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+<?php
+use Pensoft\Articles\Models\Article;
+use Carbon\Carbon;
+function onStart(){
+    $this['highlights'] = Article::news()
+                        ->where('published_at', '<=', 'now')
+                        ->where('published', 'true')
+                        ->orderBy('published_at', 'DESC')
+                        ->take(3)
+                        ->get()
+                        ->map(function($item){
+                            $item->content = str_limit(strip_tags($item->content), 90);
+                            $item->href = $item->slug;
+                            return $item;
+                        });
+}
+?>
+==
+<div class="container800 intro_content">
+    {% component 'intro' %}
+</div>
+
+
+<div class="container pollinators_bees">
+    <div class="row">
+        <div class="col-md-6 col-xs-12 center-xs pollinators">
+            <video autoplay loop muted playsinline class="video-media">
+                <source src="{{ 'video3.mp4'|media }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="content" data-aos="fade-left">
+                Pollinators contribute to the reproduction of about 75% of the world's leading food crops*
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12 center-xs bees">
+            <video autoplay loop muted playsinline class="video-media">
+                <source src="{{ 'video2.mp4'|media }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="content" data-aos="fade-right">
+                However,
+                <span class="1_in_3">1 in 3</span>
+                bee, butterfly and hoverfly species is in decline*
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% if highlights.count %}
+<!-- latest from news -->
+<div class="container highlights-news">
+    <div class="row">
+        <div class="col-md-6 col-xs-12 view_all_container">
+        <h1 class="display-1">Latest news from<br>VALOR</h1>
+            <a class="btn btn-primary view_all" href="{{'news'|page}}">View all</a>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            {% for highlight in highlights %}
+            <div class="home-news-highlights">
+                <div class="row news-item">
+                    <div class="col-md-12 col-xs-12 home-news-cover">
+                        <a href="/news/{{highlight.slug}}">
+                            <img src="{{ highlight.cover.path}}" alt="{{ highlight.title }}">
+                            <div class="btn read-more-btn btn-primary">Read</div>
+                            <div class="news-date">{{ highlight.published_at|date('d.m.Y') }}</div>
+                            <div class="blur_filter"></div>
+                        </a>
+                    </div>
+                    <div class="col-md-12 col-xs-12 news-content">
+
+                        <a href="/news/{{highlight.slug}}">
+                            <div class="news-title">{{ highlight.title|length > 100 ? highlight.title|slice(0, 100)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|replace({"&nbsp;": " ", ".": ". "})  }}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+

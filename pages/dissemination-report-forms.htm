@@ -1,0 +1,70 @@
+url = "/internal-repository/forms"
+layout = "default"
+title = "Reporting forms"
+
+[session]
+security = "user"
+allowedUserGroups[] = "internal-users"
+allowedUserGroups[] = "registered"
+allowedUserGroups[] = "guest"
+redirect = "home"
+==
+{% component 'session' %}
+<div class="container">
+
+	<div class="row middle-xs between-xs">
+		<div class="col-xs-12 col-md-5 mt-1 mb-1">
+
+		</div>
+
+		<div class="col-xs-12 col-md-3 end-xs">
+			<a href="{{url('internal-repository')}}" class="back"> <div class="arrow-left end-xs"></div> &nbsp;Back to documents</a>
+		</div>
+
+		<div class="col-xs-12 col-md-12 end-xs">
+			<h1 class="base_heading inner-page">Reporting forms</h1>
+		</div>
+
+
+		<div class="col-xs-12 work_packages">
+
+			<div class="accordion-border">
+				<div class="row middle-xs accordion-toggle">
+
+					<div class="col-xs start-xs">
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSeDL0TyjGRvedBZa32nFNhyMh0fuT7mmOmIqusyTT7pdvkBmw/viewform" target="_blank">VALOR Communication Activities Form</a></div>
+
+				</div>
+			</div>
+
+			<div class="accordion-border">
+				<div class="row middle-xs accordion-toggle">
+
+					<div class="col-xs start-xs"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeYPYWdLY1uwrH_SYxjIW6FrwjMGPkNt0X3z11MrNca9re1_w/viewform" target="_blank">VALOR Dissemination Activities Form</a></div>
+
+				</div>
+			</div>
+			<div class="accordion-border">
+				<div class="row middle-xs accordion-toggle">
+
+					<div class="col-xs start-xs"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeZ7gzPNC35Gm85-TMk7SQTiQcktG7Q00JnByk_dSrt1ljrAA/viewform" target="_blank">VALOR Publications Form</a></div>
+
+				</div>
+			</div>
+
+			<div class="accordion-border">
+				<div class="row middle-xs accordion-toggle">
+
+					<div class="col-xs start-xs"><a href="https://docs.google.com/forms/d/e/1FAIpQLSc0eod3ExZJjoFpq-DaRJLn4jF39y7bBO2DmReDWt47NTAf0w/viewform" target="_blank">VALOR Datasets Form</a></div>
+
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+	</div>
+
+</div>

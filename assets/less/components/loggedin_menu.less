@@ -1,0 +1,107 @@
+.navbar-loggedin-user{
+  background: @white-color;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.09);
+    position: absolute;
+  z-index: 999;
+  height: 58px;
+  width: 100%;
+  padding-top: 19px;
+    top: 254px;
+
+    .navbar-collapse{
+        display: flex;
+        justify-content: end;
+    }
+
+    .profilename_and_avatar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: auto;
+            float: left;
+            margin-right: 20px;
+        }
+    }
+
+    nav{
+        justify-content: end;
+    }
+
+    ul{
+        float: right;
+    }
+}
+
+.home{
+    .navbar-loggedin-user{
+        top: 0;
+        z-index: 99;
+    }
+}
+
+.navbar-loggedin-user ul{
+  list-style-type: none;
+  .breakpoint-large-down({
+    padding: 0;
+  })
+}
+
+.navbar-loggedin-user ul li{
+  display: inline;
+  padding: 0 20px;
+  .breakpoint-large-down({
+    padding: 0 8px;
+  })
+}
+
+.navbar-loggedin-user ul li a{
+  color: @heading-text-color;
+  max-width: 150px;
+  padding: 10px;
+  .breakpoint-large-down({
+    padding: 0;
+    font-size: 16px;
+  })
+}
+
+.navbar-loggedin-user ul li a:hover{
+  opacity: 0.6;
+}
+
+.navbar-loggedin-user li.active a{}
+
+.nav-item.sign-in a{
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+    &:hover{
+        color: @link-color;
+    }
+  .breakpoint-large-down({
+      padding: 0;
+      padding-bottom: 5px;
+  });
+}
+
+#headerNavbarLogin{
+  .breakpoint-large-down({
+    display: none;
+  });
+}
+
+.profile_name span{
+  color: @heading-text-color;
+  .breakpoint-large-down({
+    display: none;
+  })
+}
+
+#headerNavbar{
+  .breakpoint-large-down({
+    display: flex;
+  });
+}

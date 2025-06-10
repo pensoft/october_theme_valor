@@ -1,0 +1,84 @@
+.contact{
+    .width100{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.profile-item{
+    width: 100%;
+    .contact_info {
+        border-radius: 20px;
+        margin-bottom: 40px;
+        padding: 10px;
+        width: 298px!important;
+        max-width: 100%;
+        text-align: center;
+        justify-content: center;
+        justify-self: center;
+
+        .email_container{
+            background: @link-color;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1px 0;
+        }
+        .coordinator_image{
+            img{
+                object-fit: cover;
+                width: 298px;
+                height: 312px;
+                max-width: 100%;
+                border-radius: 20px;
+            }
+        }
+        .coordinator_info{
+            font-size: 17px;
+            font-style: normal;
+            line-height: 21px;
+            letter-spacing: -0.51px;
+            text-align: left;
+            width: 100%;
+            h3{
+                font-size: 17px;
+                color: #625143;
+                font-weight: 700;
+                margin-top: 20px;
+                margin-bottom: 0px;
+                text-align: left;
+                .breakpoint-large-down({
+                    display: flex;
+                    justify-content: center;
+                });
+            }
+            .position{
+                color: #99836F;
+                font-weight: 400;
+                .breakpoint-large-down({
+                    text-align: center;
+                });
+            }
+            .btn{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 50px;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 100%; /* 16px */
+                letter-spacing: -0.48px;
+                margin-top: 28px;
+            }
+        }
+
+        .breakpoint-large-down({
+            width: 100%;
+        });
+    }
+}
