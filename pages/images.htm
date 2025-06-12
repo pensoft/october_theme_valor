@@ -7,6 +7,7 @@ robot_follow = "follow"
 
 [builderList mediaImagesList]
 modelClass = "pensoft\Media\Models\Graphic"
+modelClass = "pensoft\Media\Models\Galleries"
 scope = "-"
 scopeValue = "{{ :scope }}"
 displayColumn = "name"
@@ -23,11 +24,12 @@ templates = "template1"
 description_limit = 0
 ==
 <?php
+use Pensoft\Media\Models\Galleries;
 use Pensoft\Media\Models\Graphic;
 use System\Models\File;
 
 function onStart(){
-	$this['mediaImagesList'] =  Graphic::get();
+	$this['mediaImagesList'] =  Galleries::get();
 if(get('download')){
 $file = File::find((int)get('download'));
 $file_name = $file->getLocalPath();
@@ -76,22 +78,39 @@ return Response::download($pathToFile, $fileName, $headers);
 <div class="container media-images-container">
 
     {% if records.count() %}
-    <div class="row">
+    <div class="row media_images">
         <div class="col-md-12 col-xs-12 mb-2">
             <a href="/media-center" class="go-back-link">Back</a>
         </div>
         {% for record in records %}
 
-        <div class="col-md-4 col-xs-12 mb-4">
-            <div class="logo-item">
-                <div class="logo-container {{record.name|slug}} {{record.name}}">
-                    <img src="{{record.image.path}}" title="{{record.name}}" alt="{{record.name}}">
+
+
+        <div class="col-md-12 col-xs-12 mb-4">
+            <div class="accordion-border key_0"><!-- 1 --><!-- css 1 -->
+                <div class="row middle-xs accordion-toggle">
+
+                    <div class="col-xs-12 start-xs title_container">{{record.name}}</div>
+
+                    <div class="col-xs-12 plusminus"><span class="minus">View</span></div>
                 </div>
-                <div class="record_name">{{record.name}}</div>
-                <div class="links">
-                    {% if record.file %}
-                    <a href="{{record.file.path}}" target="_blank" data-attach-loading class="btn btn-primary"><i></i> Download</a>
+
+                <div class="accordion-content" style="">
+
+                    {% if record.images %}
+                    {% for image in record.images %}
+                    <div class="logo-item">
+                        <div class="images-container {{record.title|slug}} {{record.title}}">
+                            <img src="{{image.path}}" title="{{record.title}}" alt="{{record.title}}">
+                        </div>
+                        <div class="record_name">{{image.title}}</div>
+                        <div class="links">
+                            <a href="{{image.file.path}}" target="_blank" data-attach-loading class="btn btn-primary"><i></i> Download</a>
+                        </div>
+                    </div>
+                    {% endfor %}
                     {% endif %}
+
                 </div>
             </div>
         </div>

@@ -18,9 +18,9 @@ function onStart(){
 ==
 {% component 'siteSearchInclude' %}
 <div class="container800">
-    <div class="row ">
+    <div class="row center-xs">
         {% for profile in profiles %}
-        <div class="col-md-6 col-xs-12 profile-item">
+        <div class="col-md-5 col-xs-12 profile-item">
             <div class="row contact_info">
                 <div class="coordinator_image">
                     <img src="{{profile.avatar.thumb(298, 312, {'mode' : 'crop' })}}">

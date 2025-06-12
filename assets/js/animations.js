@@ -14,7 +14,7 @@ function animateHeaderText() {
             const subtitles = $('.hero .sub-title h1');
             subtitles.each(function (index) {
                 setTimeout(() => {
-                    animateSubtitleWords($(this));
+                    animateSubtitleWords($(this), 0.8);
                 }, index * 300); // Stagger subtitle lines
             });
         }, 0); // Start subtitle animation ~1s after H1 starts -- 1000
@@ -59,7 +59,7 @@ function animateHeadingWords(element) {
 }
 
 // New animation function for subtitles: Masked slide-up reveal word by word
-function animateSubtitleWords(element) {
+function animateSubtitleWords(element, delay) {
     const text = element.text();
     element.empty(); // Clear original content
 
@@ -83,7 +83,7 @@ function animateSubtitleWords(element) {
                 `<span class="subtitle-word-content" style="
                     display: block; /* Important for transform */
                     transform: translateY(100%); /* Start at edge of mask */
-                    transition: transform 0.8s ease-out; /* Slower, softer easing */
+                    transition: transform ${delay}s ease-out; /* Slower, softer easing */
                 ">${part}</span>`
             );
 
@@ -271,6 +271,39 @@ function isScrolledIntoView(elem) {
         return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     }
     return;
+}
+
+
+
+// Function to animate text rows
+function animateTextRowsSmooth() {
+
+    const $rows = $('.animate_text');
+    const totalRows = $rows.length;
+    let currentRow = 0;
+
+    // Reset all rows
+    $rows.removeClass('loaded');
+
+    function showNextRow() {
+        if (currentRow < totalRows) {
+            // Animate progress bar
+            const progress = ((currentRow + 1) / totalRows) * 100;
+
+            // Show current row
+            $rows.eq(currentRow).addClass('loaded');
+            currentRow++;
+
+            // Schedule next row
+            setTimeout(showNextRow, 600);
+        } else {
+            // Animation complete
+            isAnimating = false;
+        }
+    }
+
+    // Start the animation
+    showNextRow();
 }
 
 // Initialize animations when document is ready

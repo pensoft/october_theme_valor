@@ -4,7 +4,7 @@ nav:not(.navbar){
         list-style-type: none;
         li{
             display: inline;
-            margin: 0 10px;
+            //margin: 0 10px;
         }
     }
 }
@@ -212,8 +212,8 @@ nav:not(.navbar){
 
         .news-date{
             position: absolute;
-            top: 25px;
-            left: 25px;
+            top: 15px;
+            left: 15px;
             border-radius: 12px;
             background: rgba(66, 55, 18, 0.38);
 
@@ -443,9 +443,25 @@ nav:not(.navbar){
     padding: 30px;
     border-radius: 20px;
     background: #fffcf2;
+    margin-right: -40px;
+
     .breakpoint-large-down({
         padding: 30px 0 0 0;
+        margin-right: unset;
+
     });
+}
+
+
+.home{
+
+    .news-item{
+        max-width: 633px;
+        display: flex;
+        flex-direction: column;
+        justify-self: end;
+
+    }
 }
 
 .highlights-news{
@@ -460,6 +476,7 @@ nav:not(.navbar){
     .view_all{
         position: sticky;
         top: 270px;
+        min-width: 130px;
     }
 
     .container:first-of-type {
@@ -486,8 +503,8 @@ nav:not(.navbar){
 
         .news-date{
             position: absolute;
-            top: 25px;
-            left: 25px;
+            top: 15px;
+            left: 15px;
             border-radius: 12px;
             background: rgba(66, 55, 18, 0.38);
 
@@ -533,16 +550,18 @@ nav:not(.navbar){
         padding: 0!important;
         a{
             width: 100%;
-            height: 438px;
+            height: 433px;
             border-radius: 15px;
             overflow: hidden;
             position: relative;
-
-
-
             &:hover {
                 cursor: none;
             }
+
+            .breakpoint-laptop-down({
+                max-width: 45vw;
+                max-height: 45vh;
+            });
 
             .breakpoint-large-down({
                 display: block;
@@ -605,16 +624,21 @@ nav:not(.navbar){
 
         img {
             width: 100%;
-            height: 438px;
+            height: 433px;
+
             object-fit: cover;
             border-radius: 15px;
-            max-width: 100%;
             transition: all 0.5s ease-in-out;
             position: relative;
 
             &:hover{
                 transform: scale(1.2);
             }
+
+            .breakpoint-laptop-down({
+                max-width: 45vw;
+                max-height: 45vh;
+            });
 
             .breakpoint-large-down({
                 width: 100%;
@@ -625,13 +649,19 @@ nav:not(.navbar){
 
         .blur_filter{
             width: 100%;
-            height: 438px;
+            height: 433px;
+
             border-radius: 15px;
             background: linear-gradient(180deg, rgba(85, 68, 13, 0.00) 0%, #55440D 100%);
             content: ' ';
             top: 0;
             left: 0;
             position: absolute;
+
+            .breakpoint-laptop-down({
+                max-width: 45vw;
+                max-height: 45vh;
+            });
         }
 
 

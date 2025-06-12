@@ -12,6 +12,11 @@
     }
 }
 
+.menu_container{
+    padding: 0;
+    width: inherit;
+}
+
 .navbar {
     position: absolute;
     width: 100%;
@@ -48,8 +53,11 @@
     .navbar-brand {
         display: flex;
         flex-basis: 150px;
-        height: 50px;
-        z-index: 1;
+        width: 102px;
+        height: 52px;
+        z-index: 4;
+        position: absolute;
+        left: 0;
         &:hover{
             scale: 1.05;
         }
@@ -220,7 +228,7 @@
 
     .sign-in{
         position: absolute;
-        right: 5%;
+        right: 0;
         .breakpoint-large-down({
             position: relative;
             right: unset;
@@ -301,6 +309,7 @@
             flex-direction: row;
             padding-left: 0;
             width: 100%;
+            position: relative;
             //padding-right: 40px;
 
             .navbar-nav {

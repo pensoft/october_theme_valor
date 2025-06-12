@@ -37,6 +37,7 @@ numberOfLevels = 2
 </nav>
 {% endif %}
 
+
 <nav class="pr-1 pl-1 navbar fixed" id="headernavbar">
     <div id="menuToggle">
         <input type="checkbox" />
@@ -45,15 +46,17 @@ numberOfLevels = 2
         <span></span>
         {% component 'menu' %}
     </div>
-    <a href="{{'home'|page}}" class="navbar-brand" id="navbar-brand" style="background: url('{{ this.theme.site_logo.getPath() }}') center no-repeat; background-size: contain;">
 
-    </a>
 
-    <div class="navbar-collapse collapse center-xs" id="headerNavbarNav" style="display: none;">
-        {% component 'menu' %}
-    </div>
+        <div class="container menu_container">
+            <div class="navbar-collapse collapse center-xs" id="headerNavbarNav" style="display: none;">
+                <a href="{{'home'|page}}" class="navbar-brand" id="navbar-brand" style="background: url('{{ this.theme.site_logo.getPath() }}') center no-repeat; background-size: contain;"></a>
+                {% component 'menu' %}
+            </div>
+        </div>
 
 </nav>
+
 
 
 

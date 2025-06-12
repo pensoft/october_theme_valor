@@ -1,10 +1,12 @@
 
 var viewed = false;
 var viewed_subscribe = false;
+var viewed_text = false;
 
 window.onscroll = function() {
     animateTestimonial()
     animateSubscribe()
+    animateTextRows()
 }
 
 var width = window.innerWidth;
@@ -31,7 +33,7 @@ function animateTestimonial(){
     var el = $(".testimonial h3");
     if (isScrolledIntoView(el) && !viewed) {
         viewed = true;
-        animateSubtitleWords(el);
+        animateHeadingWords(el);
     }
 }
 
@@ -39,7 +41,15 @@ function animateSubscribe(){
     var el = $(".subscriber h1");
     if (isScrolledIntoView(el) && !viewed_subscribe) {
         viewed_subscribe = true;
-        animateSubtitleWords(el);
+        animateSubtitleWords(el, 0.8);
+    }
+}
+
+function animateSubscribe(){
+    var el = $(".subscriber h1");
+    if (isScrolledIntoView(el) && !viewed_subscribe) {
+        viewed_subscribe = true;
+        animateTextRowsSmooth();
     }
 }
 
@@ -127,7 +137,7 @@ $(document).ready(function() {
     }
 
 
-    $('body').on('click', '.work_packages .accordion-toggle, .messages .accordion-toggle, .pilots .accordion-toggle', function () {
+    $('body').on('click', '.work_packages .accordion-toggle, .messages .accordion-toggle, .pilots .accordion-toggle, .media_images .accordion-toggle', function () {
         if ($(this).next(".accordion-content").is(':visible')) {
             $(this).next(".accordion-content").slideUp(300);
             $(this).children(".plusminus").html('<span class="plus">Read more</span>');
@@ -319,15 +329,31 @@ $(document).ready(function() {
     });
 
 
-    $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
-        '<a class="folder-background" style="display:flex; background: url(https://valor-project.eu/storage/app/media/working-documents-live.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/living-documents" title="Working documents (live)"></a>\n' +
-        '<h3 class="card-header"><a href="/internal-repository/living-documents" title="Working documents (live)">Working documents (live)</a></h3>\n' +
-        '</div>').insertAfter($('.card.internal').last());
+    var active_forms = '';
+    var active_docs = '';
+    if(window.location.pathname == '/internal-repository/forms'){
+        active_forms = 'active_item';
+    }
+    if(window.location.pathname == '/internal-repository/living-documents'){
+        active_docs = 'active_item';
+    }
 
-    $('<div class="col-xs-12 col-sm-3 card internal no-border" style="margin-bottom: 15px">\n' +
-        '<a class="folder-background" style="display:flex; background: url(https://valor-project.eu/storage/app/media/Reporting%20forms.svg) center center no-repeat; background-size: 100px; height: 200px" href="/internal-repository/forms" title="Reporting forms"></a>\n' +
-        '<h3 class="card-header"><a href="/internal-repository/forms" title="Reporting forms">Reporting forms</a></h3>\n' +
-        '</div>').insertAfter($('.card.internal:nth-child(5)'));
+    $('<div class="col-xs-12">\n' +
+        '<div class="sidebar_menu_item ' + active_forms + ' ">\n' +
+        '<a href="/internal-repository/forms" title="Reporting forms">\n' +
+        '<i></i> <div class="card-header">Reporting forms</div>\n' +
+        '</a>\n' +
+        '</div>\n' +
+        '</div>').insertAfter($('.sidebar_menu_list .col-xs-12:last-child').last());
+
+    $('<div class="col-xs-12">\n' +
+        '<div class="sidebar_menu_item ' + active_docs + ' ">\n' +
+        '<a href="/internal-repository/living-documents" title="Living documents">\n' +
+        '<i></i> <div class="card-header">Living documents</div>\n' +
+        '</a>\n' +
+        '</div>\n' +
+        '</div>').insertAfter($('.sidebar_menu_list .col-xs-12:last-child').last());
+
 
     $('<small>To download individual image please right click</small>').insertAfter($('.all_images_container'));
 
@@ -366,6 +392,10 @@ $(document).ready(function() {
 
         $('.partners_list .key_0, .partners_list .key_2, .partners_list .key_4, .partners_list .key_6, .partners_list .key_8, .partners_list .key_10, .partners_list .key_12, .partners_list .key_14').wrapAll('<div class="col-md-6 col-xs-12" />');
         $('.partners_list .key_1, .partners_list .key_3, .partners_list .key_5, .partners_list .key_7, .partners_list .key_9, .partners_list .key_11, .partners_list .key_13, .partners_list .key_15').wrapAll('<div class="col-md-6 col-xs-12" />');
+
+
+        $('.partners_list .key_220, .partners_list .key_222, .partners_list .key_224, .partners_list .key_226, .partners_list .key_228, .partners_list .key_2210, .partners_list .key_2212, .partners_list .key_2214').wrapAll('<div class="col-md-6 col-xs-12" />');
+        $('.partners_list .key_221, .partners_list .key_223, .partners_list .key_225, .partners_list .key_227, .partners_list .key_229, .partners_list .key_2211, .partners_list .key_2213, .partners_list .key_2215').wrapAll('<div class="col-md-6 col-xs-12" />');
     }
 
 

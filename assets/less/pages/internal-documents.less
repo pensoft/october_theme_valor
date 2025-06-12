@@ -12,11 +12,13 @@
 }
 
 .download-icon{
-  background: url(../../assets/images/download-icon.svg) bottom left no-repeat;
-  background-size: 14px;
-  padding-left: 20px;
-  color: #3daae9;
-  font-size: 15px;
+  background: @yellow-color url(../../assets/images/download_icon_icp.svg) center no-repeat;
+    background-position: 10px center;
+    background-size: 13px;
+    color: white;
+    font-size: 15px;
+    padding: 8px 10px 8px 30px;
+    border-radius: 8px;
 }
 
 .close {width:30px;display:block;position:absolute;top:5px;right:5px;font-size:28px;z-index:10; border: none; background: none;}
@@ -40,7 +42,7 @@
 }
 
 a.modal-link{
-  color: #34a6e9;
+  color: @yellow-color;
   font-size: 16px;
 }
 
@@ -376,14 +378,39 @@ a:hover .arrow-left{
   background-position: 8px 9px;
 }
 
-.circled_plus{
-  background: url('../../assets/images/upload.svg') top left  no-repeat;
-  width: 16px;
-  height: 16px;
-  position: relative;
-  display: inline-block;
-  top: 2px;
-  margin-right: 3px;
+.circled_plus::before{
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 0px;
+    margin-right: 3px;
+    content: "\002B";
+    border-radius: 50%;
+    border: 1px solid @yellow-color;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    justify-content: center;
+    color: @yellow-color;
+}
+
+
+.circled_upload::before{
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 0px;
+    margin-right: 3px;
+    content: "\2794";
+    border-radius: 50%;
+    border: 1px solid @yellow-color;
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    justify-content: center;
+    color: @yellow-color;
+    transform: rotate(-90deg);
 }
 
 
@@ -451,12 +478,10 @@ a:hover .arrow-left{
 
     color: @link-color!important;
     font-weight: bold;
-    font-family: Comfortaa;
     font-size: 16px;
   a{
     color: @link-color!important;
     font-weight: bold;
-    font-family: Comfortaa;
     font-size: 16px;
 
   }
@@ -618,6 +643,10 @@ a:hover .arrow-left{
 }
 
 .icp_main_page{
+
+    h1.base_heading.inner-page{
+        display: none;
+    }
     .sidebar_menu_container{
         border-radius: 0px 10px 0px 0px;
         background: #FFF;
@@ -640,9 +669,10 @@ a:hover .arrow-left{
                     line-height: 24px; /* 160% */
                     letter-spacing: -0.45px;
                     display: flex;
-                    padding: 12px 20px 12px 20px;
+                    padding: 0 20px;
                     align-items: center;
                     background-color: #ffffff;
+                    height: 54px;
                     i{
                         background: url("../../assets/images/file-background-yellow.svg") left center no-repeat;
                         width: 24px;
@@ -678,5 +708,25 @@ a:hover .arrow-left{
     .folders_container{
         padding: 40px;
         background: #F2F3F4;
+        position: relative;
+
+        .reporting_forms_list{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            li{
+                border-radius: 8px;
+                background: #FFF;
+                padding: 12px;
+                width: 60%;
+                margin-bottom: 12px;
+                color: #808080;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 135%; /* 21.6px */
+                letter-spacing: -0.48px;
+            }
+        }
     }
 }

@@ -90,7 +90,7 @@ a.ui-button:active,
 
 
 
-.work_packages .accordion-border{
+.work_packages .accordion-border, .media_images .accordion-border{
     border: none;
     border-radius: 20px;
     margin: 20px 0;
@@ -102,7 +102,11 @@ a.ui-button:active,
     min-height: 243px;
 }
 
-.work_packages .accordion-toggle{
+.media_images .accordion-border{
+    min-height: unset;
+}
+
+.work_packages .accordion-toggle, .media_images .accordion-toggle{
     background: none;
     border: none;
     border-radius: unset;
@@ -119,7 +123,7 @@ a.ui-button:active,
 
 
 }
-.work_packages .accordion-content{
+.work_packages .accordion-content, .media_images .accordion-content{
     margin-top: 20px;
     line-height: 1.5em!important;
     padding: 0 7px;
@@ -127,6 +131,11 @@ a.ui-button:active,
         list-style-type: decimal;
         padding-left: 40px;
     }
+}
+
+.media_images .accordion-content{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -138,12 +147,13 @@ a.ui-button:active,
     });
 }
 
-.work_packages .plusminus{
+.work_packages .plusminus, .media_images .plusminus{
     color: @yellow-color;
     position: relative;
     text-transform: uppercase;
     max-width: fit-content;
-    padding-right: 22px;
+    padding-right: 18px;
+    font-size: 16px;
     &:after{
         position: absolute;
         right: 0;
@@ -153,44 +163,15 @@ a.ui-button:active,
         content: '';
         transition: all 0.3s ease-in-out;
         background: url("../../assets/images/yellow-arrow-down.svg") right center no-repeat;
-        background-size: 17px;
+        background-size: 13px;
 
     }
     &:hover{
         &:after{
             transform:rotate(-45deg);
-            top: 0;
         }
     }
 
-    //flex-basis: 10%;
-    //display: flex;
-    //flex-direction: row;
-    //align-items: center;
-    //justify-content: center;
-    //.breakpoint-large-down({
-    //    position: relative;
-    //});
-    //.plus, .minus{
-    //    color: @yellow-color;
-    //    display: flex;
-    //    align-items: center;
-    //    justify-content: center;
-    //    text-transform: uppercase;
-    //    background: url("../../assets/images/yellow-arrow-down.svg") right center no-repeat;
-    //    background-size: 25px 17px!important;
-    //    .breakpoint-large-down({
-    //        position: absolute;
-    //        right: 5px;
-    //    });
-    //}
-    //.plus{
-    //    background: url("../../assets/images/find out more arrow.svg") center no-repeat;
-    //}
-    //.minus{
-    //    background: url("../../assets/images/find out more arrow.svg") center no-repeat;
-    //    transform: rotate(270deg);
-    //}
 }
 
 .work_packages .green_bullet{
@@ -209,7 +190,7 @@ a.ui-button:active,
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-;
+    text-transform: uppercase;
 }
 
 
@@ -277,37 +258,33 @@ a.ui-button:active,
 
     .messages .plusminus{
         flex-basis: 10%;
-        width: 29px;
-        height: 29px;
+        color: @yellow-color;
+        position: relative;
+        text-transform: uppercase;
+        max-width: fit-content;
+        padding-right: 18px;
+        font-size: 16px;
+        &:after{
+            position: absolute;
+            right: 0;
+            top: 2px;
+            width: 17px;
+            height: 17px;
+            content: '';
+            transition: all 0.3s ease-in-out;
+            background: url("../../assets/images/yellow-arrow-down.svg") right center no-repeat;
+            background-size: 13px;
+
+        }
+        &:hover{
+            &:after{
+                transform:rotate(-45deg);
+            }
+        }
+
         .breakpoint-large-down({
             position: relative;
         });
-        .plus, .minus{
-            width: 29px;
-            height: 29px;
-            text-align: right;
-            vertical-align: middle;
-            color: @default-color;
-            border-radius: 50%;
-            border: 3px solid @link-color;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: url("../../assets/images/find out more arrow.svg") center no-repeat;
-            transform: rotate(90deg);
-            background-size: 25px 17px!important;
-            .breakpoint-large-down({
-                position: absolute;
-                right: 5px;
-            });
-        }
-        .plus{
-            background: url("../../assets/images/find out more arrow.svg") center no-repeat;
-        }
-        .minus{
-            background: url("../../assets/images/find out more arrow.svg") center no-repeat;
-            transform: rotate(270deg);
-        }
     }
 
     .messages .green_bullet{
@@ -498,7 +475,8 @@ a.ui-button:active,
         position: relative;
         text-transform: uppercase;
         max-width: fit-content;
-        padding-right: 22px;
+        padding-right: 18px;
+        font-size: 16px;
         &:after{
             position: absolute;
             right: 0;
@@ -508,13 +486,12 @@ a.ui-button:active,
             content: '';
             transition: all 0.3s ease-in-out;
             background: url("../../assets/images/yellow-arrow-down.svg") right center no-repeat;
-            background-size: 17px;
+            background-size: 13px;
 
         }
         &:hover{
             &:after{
                 transform:rotate(-45deg);
-                top: 0;
             }
         }
 

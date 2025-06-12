@@ -32,13 +32,6 @@
     }
 }
 
-.mission{
-    h1{
-        text-align: center;
-        width: 100%;
-    }
-}
-
 
 .pollinators_bees{
     padding-top: 0;
@@ -294,6 +287,25 @@
         background: url("../../assets/images/Ellipse-about.svg") left 80% no-repeat;
     }
 
+    .about_intro_text{
+        //p{
+        //    animation: text-appear ease-in both;
+        //    animation-timeline: view(); /* applies animation state relative to viewport */
+        //    animation-range: 0vh 70vh;
+        //}
+    }
+    .mission{
+        h1{
+            text-align: center;
+            width: 100%;
+        }
+        //p{
+        //    animation: text-appear ease-in both;
+        //    animation-timeline: view(); /* applies animation state relative to viewport */
+        //    animation-range: 0vh 70vh;
+        //}
+    }
+
     .container1000{
         position: relative;
         .about_vector1, .about_vector2, .about_vector3{
@@ -331,8 +343,6 @@
     }
     .testimonial{
         position: relative;
-
-
         &:before{
             content: '';
             position: absolute;
@@ -345,10 +355,13 @@
 
         .container{
             padding: 0;
+            //animation: text-appear ease-in both;
+            //animation-timeline: view(); /* applies animation state relative to viewport */
+            //animation-range: 0vh 70vh;
 
             h3{
                 color: #422F1F;
-                font-size: 40px;
+                font-size: 30px;
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
@@ -359,6 +372,14 @@
                 width: auto;
                 margin-top: 40px;
             }
+        }
+
+
+    }
+
+    .approach{
+        .btn-primary{
+            min-width: 130px;
         }
     }
 
@@ -446,6 +467,13 @@
 
 
 
+    @keyframes text-appear {
+        from {
+            opacity: 0;
+            translate: 0 8rem;
+        }
+    }
+
 
 }
 
@@ -457,6 +485,75 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+.attr_table{
+    .regions_info {
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 10px;
+        background: #EEEADE;
+        border-collapse: collapse;
+        border-radius: 10px;
+        border-style: hidden; /* hide standard table (collapsed) border */
+        box-shadow: 0 0 0 1px #625143; /* this draws the table border  */
+        //width: 90%;
+        float: right;
+
+
+        tr{
+            vertical-align: center;
+        }
+
+        td, th {
+            border: 1px solid #CCC3BC;
+            color: #625143;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            padding: 10px;
+
+            line-height: 23px; /* 115% */
+            letter-spacing: -0.6px;
+
+            text-align: center;
+            &:nth-child(1){
+                text-align: left;
+            }
+
+
+        }
+
+        td{
+            font-size: 17px;
+
+            &:nth-child(1){
+                font-size: 17px;
+                padding: 12px 24px;
+            }
+
+            img{
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        th {
+            background-color: @yellow-color;
+            font-weight: 700;
+            border: 1px solid #625143;;
+            &:nth-child(1){
+                border-top-left-radius: 10px;
+                padding: 12px 24px;
+            }
+            &:last-child{
+                border-top-right-radius: 10px;
+            }
+        }
+    }
+
+
 }
 
 

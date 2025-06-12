@@ -219,8 +219,30 @@
 
 }
 
-.newsletters{
+.images-container{
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    //background-color: @secondary-color;
+    //margin: 0 auto 20px auto;
+    border-radius: 20px;
+
+
+    img {
+        object-fit: contain;
+    }
+
+
+}
+
+.newsletters{
+    .date{
+        color: @yellow-color;
+        text-transform: uppercase;
+        margin-top: 10px;
+    }
 }
 
 .flyer-container{
@@ -291,10 +313,10 @@
 .press-relies-item{
     width: 100%;
     max-width: 100%;
-    background-color: @white-color;
-    //margin: 0 auto 20px auto;
+    background-color: #EEEADE;
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
 
     .breakpoint-large-down({
         width: auto;
@@ -306,7 +328,7 @@
 
     .date{
         font-size: 18px;
-        color: @green-color;
+        color: @yellow-color;
         text-transform: uppercase;
     }
 
