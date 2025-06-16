@@ -49,7 +49,7 @@ return Response::download($pathToFile, $fileName, $headers);
 ?>
 ==
 <div class="container">
-    <div class="row between-md around-xs">
+    <div class="row">
         {% if logos.count() %}
         <div class="col-md-4 col-xs-12">
             <div class="row media-item">
@@ -114,20 +114,20 @@ return Response::download($pathToFile, $fileName, $headers);
         {% endif %}
 
 
-        {% if pressreleases.count() %}
-        <div class="col-md-4 col-xs-12">
-            <div class="row media-item">
-                <div class="col-md-12 col-xs-12 mb-2 media-cover">
-                    <a href="{{'press-releases'|page}}">
-                        <img src="{{'Brand-Kit.png'|media}}" title="Press releases">
-                        <div class="btn read-more-btn btn-primary">Open</div>
-                        <div class="blur_filter"></div>
-                        <div class="media-title">Press releases</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        {% endif %}
+<!--        {% if pressreleases.count() %}-->
+<!--        <div class="col-md-4 col-xs-12">-->
+<!--            <div class="row media-item">-->
+<!--                <div class="col-md-12 col-xs-12 mb-2 media-cover">-->
+<!--                    <a href="{{'press-releases'|page}}">-->
+<!--                        <img src="{{'Brand-Kit.png'|media}}" title="Press releases">-->
+<!--                        <div class="btn read-more-btn btn-primary">Open</div>-->
+<!--                        <div class="blur_filter"></div>-->
+<!--                        <div class="media-title">Press releases</div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endif %}-->
 
         {% if images.count() %}
         <div class="col-md-4 col-xs-12">

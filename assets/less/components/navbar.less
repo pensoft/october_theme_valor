@@ -83,7 +83,7 @@
     .dropdown{
         .dropdown-menu {
             border-radius: 0px 0px 5px 5px;
-            background: #3B2919;
+            background: black;
             animation: rotateX 500ms ease-in-out forwards;
             transform-origin: top center;
             opacity: 0;
@@ -209,7 +209,7 @@
             height: 50px;
         }
         .dropdown-menu{
-            background-color: @heading-text-color;
+            background-color: black;
         }
         .navbar-nav{
             padding-top: 0;
@@ -355,6 +355,17 @@
                             position: absolute;
                             line-height: 1.6em;
                             padding: 20px 32px 15px 20px !important;
+                            top: 40px;
+
+                            &:before{
+                                content: '';
+                                position: absolute;
+                                background: transparent;
+                                width: 100%;
+                                height: 35px;
+                                top: -34px;
+                                left: 0;
+                            }
 
                             a {
                                 padding: 0 !important;

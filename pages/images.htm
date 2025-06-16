@@ -1,4 +1,4 @@
-url = "/media-center/images"
+url = "/media-center/images/:id?|[a-zA-Z\-0-9]"
 layout = "default"
 title = "Images"
 is_hidden = 0
@@ -30,6 +30,10 @@ use System\Models\File;
 
 function onStart(){
 	$this['mediaImagesList'] =  Galleries::get();
+	$this['gallery'] = Galleries::where('id', $this->param('id'))->first();
+	$this['id'] = $this->param('id');
+    $this['is_detail_page'] = $this['gallery'] ? true : false;
+
 if(get('download')){
 $file = File::find((int)get('download'));
 $file_name = $file->getLocalPath();
@@ -76,48 +80,72 @@ return Response::download($pathToFile, $fileName, $headers);
 {% set records = mediaImagesList %}
 
 <div class="container media-images-container">
+    {% if is_detail_page %}
+        <div class="row media_images news">
+            <div class="col-md-12 col-xs-12 mb-2">
+                <a href="/media-center/images" class="go-back-link">Back</a>
+            </div>
 
-    {% if records.count() %}
-    <div class="row media_images">
-        <div class="col-md-12 col-xs-12 mb-2">
-            <a href="/media-center" class="go-back-link">Back</a>
-        </div>
-        {% for record in records %}
+            {% if gallery.images %}
+            <div class="row">
+                {% for image in gallery.images %}
+                <div class="col-md-4 col-xs-12 home-news-records">
+                    <div class="row news-item">
+                        <div class="col-md-12 col-xs-12 home-news-cover">
 
+                            <a data-toggle="modal" href="#image{{image.id}}">
+                                <img src="{{ image.path}}" alt="{{ image.name }}">
+                                <div class="btn zoom-btn btn-primary"><img src="{{'zoom.svg'|media}}" class="zoom_icon"></div>
+                                <div class="blur_filter"></div>
+                            </a>
 
+                            <div class="control-popup modal fade" id="#image{{image.id}}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content center-xs">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <img src="{{ image.path}}" alt="{{ image.name }}">
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="col-md-12 col-xs-12 mb-4">
-            <div class="accordion-border key_0"><!-- 1 --><!-- css 1 -->
-                <div class="row middle-xs accordion-toggle">
-
-                    <div class="col-xs-12 start-xs title_container">{{record.name}}</div>
-
-                    <div class="col-xs-12 plusminus"><span class="minus">View</span></div>
-                </div>
-
-                <div class="accordion-content" style="">
-
-                    {% if record.images %}
-                    {% for image in record.images %}
-                    <div class="logo-item">
-                        <div class="images-container {{record.title|slug}} {{record.title}}">
-                            <img src="{{image.path}}" title="{{record.title}}" alt="{{record.title}}">
-                        </div>
-                        <div class="record_name">{{image.title}}</div>
-                        <div class="links">
-                            <a href="{{image.file.path}}" target="_blank" data-attach-loading class="btn btn-primary"><i></i> Download</a>
                         </div>
                     </div>
-                    {% endfor %}
-                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    {% else %}
+        {% if records.count() %}
+        <div class="row media_images news">
+            <div class="col-md-12 col-xs-12 mb-2">
+                <a href="/media-center" class="go-back-link">Back</a>
+            </div>
+            {% for record in records %}
 
+            <div class="col-md-4 col-xs-12 home-news-records">
+                <div class="row news-item">
+                    <div class="col-md-12 col-xs-12 home-news-cover">
+                        <a href="/media-center/images/{{record.id}}">
+                            <img src="{{ record.images[0].path}}" alt="{{ record.name }}">
+                            <div class="btn read-more-btn btn-primary">View</div>
+                            <div class="blur_filter"></div>
+                        </a>
+                    </div>
+                    <div class="col-md-12 col-xs-12 news-content">
+
+                        <a href="/media-center/images/{{record.id}}">
+                            <div class="news-title">{{ record.name}}</div>
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            {% else %}
+            {{ noRecordsMessage }}
+            {% endfor %}
         </div>
-        {% else %}
-        {{ noRecordsMessage }}
-        {% endfor %}
-    </div>
+        {% endif %}
     {% endif %}
 </div>
 

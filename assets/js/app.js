@@ -6,7 +6,7 @@ var viewed_text = false;
 window.onscroll = function() {
     animateTestimonial()
     animateSubscribe()
-    animateTextRows()
+    // animateTextRows()
 }
 
 var width = window.innerWidth;
@@ -57,8 +57,11 @@ function animateSubscribe(){
 function elementScrolled(elem) {
     var docViewTop = $(window).scrollTop();
     var docViewBottom = docViewTop + $(window).height();
-    var elemTop = $(elem).offset().top;
-    return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
+    if($(elem).offset()){
+        var elemTop = $(elem).offset().top;
+        return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
 }
 
 
@@ -81,10 +84,7 @@ $(window).scroll(function(){
     }else{
         $('.about_vector3 path').removeClass('scrolled');
     }
-
-
     animateSubscribe();
-
 
 });
 
@@ -407,7 +407,7 @@ $(document).ready(function() {
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
 
-            $(this).find('.read-more-btn').css({
+            $(this).find('.read-more-btn, .zoom-btn').css({
                 display: 'block',
                 opacity: 1,
                 left: relX + 'px',
@@ -415,14 +415,14 @@ $(document).ready(function() {
             });
         }).on('mouseleave', function() {
             // Hide the button immediately
-            $(this).find('.read-more-btn').css({
+            $(this).find('.read-more-btn, .zoom-btn').css({
                 display: 'none'
             });
         }).on('mousemove', function(e) {
             var parentOffset = $(this).offset();
             var relX = e.pageX - parentOffset.left;
             var relY = e.pageY - parentOffset.top;
-            var $btn = $(this).find('.read-more-btn');
+            var $btn = $(this).find('.read-more-btn, .zoom-btn');
             var btnWidth = $btn.outerWidth();
             var btnHeight = $btn.outerHeight();
             var containerWidth = $(this).width();
@@ -463,6 +463,12 @@ $(document).ready(function() {
             });
         });
     }
+
+
+    // $('.home-news-cover a').click(function(event) {
+    //     event.preventDefault();
+    //
+    // });
 
 
 });

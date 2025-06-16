@@ -12,24 +12,27 @@ background = "transperant"
 templates = "template3"
 description_limit = 0
 ==
-{% if this.theme.subscribe %}
 
-<div class="container-fluid subscriber">
-    <video autoplay loop muted playsinline class="video-media">
-        <source src="{{ 'video-Subscribe.mov'|media }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="container">
-        <div class="content hero">
-            <div class="row middle-xs between-md around-xs sub-title">
-                <div class="col-md-9 cl-xs-12"><h1>Subscribe to our newsletter!</h1></div>
-                <div class="col-md-3 cl-xs-12"><a href="{{this.theme.subscribe}}" target="_blank" class="btn-subscribe">Subscribe <i></i></a></div>
+{% if this.page.id != 'login' %}
+    {% if this.theme.subscribe %}
+        <div class="container-fluid subscriber">
+            <video autoplay loop muted playsinline class="video-media">
+                <source src="{{ 'video-Subscribe.mov'|media }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="container">
+                <div class="content hero">
+                    <div class="row middle-xs between-md around-xs sub-title">
+                        <div class="col-md-9 cl-xs-12"><h1>Subscribe to our newsletter!</h1></div>
+                        <div class="col-md-3 cl-xs-12"><a href="{{this.theme.subscribe}}" target="_blank" class="btn-subscribe">Subscribe <i></i></a></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
+    {% endif %}
 {% endif %}
+
+
 
 
 <div class="container-fluid border-box dark-background">
