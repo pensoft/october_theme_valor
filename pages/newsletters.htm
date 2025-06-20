@@ -96,5 +96,9 @@ return Response::download($pathToFile, $fileName, $headers);
             {% endspaceless %}
             {% endfor %}
         </div>
+        {% else %}
+        <div class="commig_soon">
+            Coming soon...
+        </div>
         {% endif %}
 </div>

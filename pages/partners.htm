@@ -23,7 +23,7 @@ function onStart(){
                             <div class="row middle-xs logo_and_link">
                                 <div class="col-xs-12 col-md-4 partner_logo">
                                     <a href="{{partner.instituion_url}}" target="_blank">
-                                        <img alt="{{ partner.instituion }}" src="{{partner.cover.thumb(150,auto,{'mode':'crop'})}}">
+                                        <img alt="{{ partner.instituion }}" src="{{partner.cover.path}}">
                                     </a>
                                 </div>
                                 <div class="col-xs-12 col-md-8 partner_title">
@@ -55,18 +55,12 @@ function onStart(){
                 <div class="row middle-xs logo_and_link">
                     <div class="col-xs-12 col-md-4 partner_logo">
                         <a href="{{partner.instituion_url}}" target="_blank">
-                            <img alt="{{ partner.instituion }}" src="{{partner.cover.thumb(150,auto,{'mode':'crop'})}}">
+                            <img alt="{{ partner.instituion }}" src="{{partner.cover.thumb(120,auto,{'mode':'crop'})}}">
                         </a>
                     </div>
                     <div class="col-xs-12 col-md-8 partner_title">
                         <h4>{{partner.instituion}} <a href="{{partner.instituion_url}}" target="_blank">({{partner.email}})</a></h4>
                     </div>
-                </div>
-                <div class="col-xs-12 partner_description">
-                    <div class="partner_content toogle-contact-paragraphs" style="display: none;">
-                        {{partner.content|raw}}
-                    </div>
-                    <a class="read-more-expand dorsal">Read more</a>
                 </div>
             </div>
             {% endfor %}

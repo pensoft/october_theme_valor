@@ -82,7 +82,7 @@ return Response::download($pathToFile, $fileName, $headers);
             <div class="col-md-4 col-xs-12 mb-4">
                 <div class="logo-item">
                     <div class="logo-container {{record.name|slug}} {{record.name}}">
-                        <img src="{{record.flyer_image.path}}" title="{{record.name}}" alt="{{record.name}}">
+                        <img src="{{record.flyer_image | resize(343, 315, { mode: 'crop' })}}" title="{{record.name}}" alt="{{record.name}}">
                     </div>
                     <div class="record_name">{{record.name}}</div>
                     <div class="links">

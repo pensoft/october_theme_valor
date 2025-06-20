@@ -27,16 +27,22 @@
         }
     }
     .partner_logo{
+        text-align: center;
         img{
-            width: 120px;
-            height: 60px;
+            //width: 120px;
+            //height: auto;
+            //max-height: 100px;
+            //object-fit: contain;
+            max-height: 112px;
             object-fit: contain;
-            object-position: left;
-            .breakpoint-large-down({
-                width: auto;
-                max-width: 100%;
-                object-fit: contain;
-            });
+            /* max-width: 120px; */
+            height: auto;
+            width: 100%;
+            margin: 0 auto;
+            //.breakpoint-large-down({
+            //    width: auto;
+            //    max-width: 100%;
+            //});
         }
 
     }

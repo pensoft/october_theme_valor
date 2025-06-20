@@ -110,8 +110,11 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% endif %}
                 </div>
 
-                {% else %}
-                {{ noRecordsMessage }}
                 {% endfor %}
+        {% else %}
+        <div class="commig_soon">
+            Coming soon...
+        </div>
+    </div>
     {% endif %}
 </div>

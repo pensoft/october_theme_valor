@@ -24,10 +24,10 @@ function onStart(){
             {% for record in messages %}
             <div class="col-xs-12 messages">
                 <div class="row middle-xs between-xs accordion-toggle">
-                    <div class="col-xs-10 start-xs title_container">
+                    <div class="col-xs-9 start-xs title_container">
                         {{record.subject}} &nbsp; <span class="date">{{record.created_at |date('d F Y')}}</span>
                     </div>
-                    <div class="col-xs-2 end-xs plusminus"><span class="plus"></span></div>
+                    <div class="col-xs-3 end-xs plusminus"><span class="plus">Read more</span></div>
                 </div>
                 <div class="row accordion-content" style="display: none;">
                     {% if record.user.count %}

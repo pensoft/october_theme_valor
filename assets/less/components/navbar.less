@@ -40,6 +40,7 @@
         line-height: normal;
         letter-spacing: -0.48px;
         font-family: LiberationSans;
+        z-index: 2;
 
 
     }
@@ -321,6 +322,7 @@
 
                 .nav-item {
                     text-align: left;
+
                     &.dropdown {
                         &:hover > .dropdown-menu {
                             display: block;
@@ -329,6 +331,7 @@
                         /* navbar arrows**/
                         position: relative;
                         margin-right: 20px;
+                        z-index: 2;
                         &:after {
                             content: '';
                             display: block;
@@ -357,14 +360,15 @@
                             padding: 20px 32px 15px 20px !important;
                             top: 40px;
 
-                            &:before{
+                            &:after{
                                 content: '';
                                 position: absolute;
-                                background: transparent;
+                                //background: transparent;
                                 width: 100%;
                                 height: 35px;
-                                top: -34px;
+                                top: -35px;
                                 left: 0;
+                                z-index: 1;
                             }
 
                             a {

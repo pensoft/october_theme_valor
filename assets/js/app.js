@@ -465,10 +465,17 @@ $(document).ready(function() {
     }
 
 
-    // $('.home-news-cover a').click(function(event) {
-    //     event.preventDefault();
-    //
-    // });
+
+    $('body').on("keyup", function(e) {
+        var code = e.which;
+        if (code == 39) {
+            e.preventDefault();
+            $('.next').trigger('click');
+        } else if (code == 37) {
+            e.preventDefault();
+            $('.prev').trigger('click');
+        }
+    });
 
 
 });
@@ -509,6 +516,8 @@ function showSlides(n) {
     // dots[slideIndex-1].className += " active";
     // captionText.innerHTML = dots[slideIndex-1].alt;
 }
+
+
 
 
 
@@ -611,7 +620,7 @@ function appendProfile() {
 function appendSignIn(){
     $(document).on('signin', function (e) {
         var headerNavbarLogin = $('#headerNavbarNav');
-        var li = '<li class="nav-item sign-in"><a href="/login" target = "_self">Login</a></li >';
+        var li = '<li class="nav-item sign-in"><a href="/login" target = "_self">Log in</a></li >';
 		headerNavbarLogin.find('>ul').append(li);
 		var menu = $('#menuToggle');
 		menu.find('>ul').append(li);
@@ -621,7 +630,7 @@ function appendSignIn(){
 function appendSignOut() {
     $(document).on('signout', function (e) {
         var headerNavbarNav = $('#headerNavbarNav');
-        var li = '<li class="nav-item  sign-in"><a data-request="onLogout" data-request-data="redirect: \'/\'">Logout</a></li >';
+        var li = '<li class="nav-item  sign-in"><a data-request="onLogout" data-request-data="redirect: \'/\'">Log out</a></li >';
         headerNavbarNav.find('>ul').append(li);
 		var menu = $('#menuToggle');
 		menu.find('>ul').append(li);
