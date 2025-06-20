@@ -63,7 +63,7 @@ numberOfLevels = 2
 
 
 
-<div class="header-image {{page_id}}">
+<div class="header-image {{page_id}}" {% if user %} style="margin-top: 75px;" {% endif %}>
     {% if page_id == 'home' %}
     <div class="video-carousel">
         <div class="carousel-slide">

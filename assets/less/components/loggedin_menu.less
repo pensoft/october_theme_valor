@@ -1,12 +1,14 @@
 .navbar-loggedin-user{
   background: @white-color;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.09);
-    position: absolute;
+    //position: absolute;
+    position: fixed;
     z-index: 999;
     height: 77px;
     display: flex;
     width: 100%;
-    top: 254px;
+    //top: 254px;
+    top: 0;
 
     .navbar-collapse{
         display: flex;
@@ -35,13 +37,13 @@
     }
 }
 
-.home{
-    .navbar-loggedin-user{
-        top: 0;
-        z-index: 99;
-        position: fixed;
-    }
-}
+//.home{
+//    .navbar-loggedin-user{
+//        top: 0;
+//        z-index: 99;
+//        position: fixed;
+//    }
+//}
 
 .navbar-loggedin-user ul{
   list-style-type: none;
