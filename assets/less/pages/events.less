@@ -15,10 +15,10 @@
 }
 
 .fc-button-group > .fc-button, .fc-button-group > .fc-button:not(:first-child), .fc-button-group > .fc-button:not(:last-child){
-    background: @link-color!important;
-    color: @white-color!important;
-    border: 1px solid @link-color;
-    border-radius: 5px;
+    background: #ded6bc!important;
+    color: #706251!important;
+    border: 1px solid #ded6bc;
+    border-radius: 30px!important;
 }
 
 .fc-button-group > .fc-today-button, .fc-button-group > fc-prev-button{
@@ -26,9 +26,10 @@
 }
 
 .fc-button-group > .fc-button:hover, .fc-button-group > .fc-button:not(:first-child):hover, .fc-button-primary:not(:disabled).fc-button-active{
-    background: @dark-color!important;
-    color:@white-color!important;
-    border: 1px solid @dark-color!important;
+    background: @yellow-color!important;
+    color:#706251!important;
+    font-weight: bold;
+    border: 1px solid @yellow-color!important;
 }
 
 .fc-button-group > .fc-button{
@@ -45,7 +46,7 @@
 .fc-left{
     order: 2;
     position: absolute;
-    margin-left: 320px;
+    margin-left: 200px;
     .breakpoint-large-down({
         //order: 1;
         position: unset;
@@ -380,11 +381,11 @@
 }
 
 .fc-button-primary{
-    background: @default-color!important;
+    background: @yellow-color!important;
     border-radius: 12px!important;
     &:hover{
         cursor: pointer;
-        background: @dark-color!important;
+        background: @heading-text-color!important;
     }
 }
 

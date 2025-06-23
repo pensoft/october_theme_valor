@@ -533,6 +533,7 @@ function handlePilotsSVGMapMouseMove(event) {
         case 'South-Limburg, Geuldal Valley Living Lab':
         case 'Kent Apple Orchard Living Lab':
         case 'South Scania':
+        case 'TODO':
             break;
         default:
             return tooltip.classList.remove("active");

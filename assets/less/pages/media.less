@@ -447,6 +447,20 @@
         background-image: url('../../assets/images/gallery_arrow_right.svg');
         background-size: 24px;
         background-position: right 23px center;
+
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background: linear-gradient(-90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
     }
 
     .prev {
@@ -454,6 +468,19 @@
         background-image: url('../../assets/images/gallery_arrow_left.svg');
         background-size: 24px;
         background-position: left 23px center;
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
     }
 
     /* On hover, add a black background color with a little bit see-through */
