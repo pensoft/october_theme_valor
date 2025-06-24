@@ -12,7 +12,6 @@ background = "transperant"
 templates = "template3"
 description_limit = 0
 ==
-
 {% if this.page.id != 'login' %}
     {% if this.theme.subscribe %}
         <div class="container-fluid subscriber">
@@ -54,9 +53,7 @@ description_limit = 0
                 {% if enable_linkedin and linkedin_url %}
                 <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
                 {% endif %}
-                {% if enable_youtube and youtube_url %}
-                <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank"></a>
-                {% endif %}
+               
                 {% if enable_instagram and instagram_url %}
                 <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank"></a>
                 {% endif %}
@@ -65,6 +62,9 @@ description_limit = 0
                 {% endif %}
                 {% if this.theme.threads_url %}
                 <a href="{{this.theme.threads_url}}" target="_blank" class="pr p-secondary p-threads small"></a>
+                {% endif %}
+                 {% if enable_youtube and youtube_url %}
+                <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank"></a>
                 {% endif %}
 
             </div>
