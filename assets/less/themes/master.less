@@ -552,6 +552,9 @@ ul.pagination{
             width: fit-content;
             text-align: center;
             margin: 0 18px 0 19px;
+            .breakpoint-large-down({
+                margin: 10px auto;
+            });
         }
     }
 
@@ -565,6 +568,11 @@ ul.pagination{
                 width: 145px;
                 height: 75px;
                 object-fit: contain;
+
+                .breakpoint-large-down({
+                    width: 50%;
+                    height: auto;
+                });
             }
             .col-xs-12{
                 padding: 0;
@@ -659,6 +667,10 @@ ul.pagination{
             height: 34px;
             width: auto;
             object-fit: contain;
+            .breakpoint-large-down ({
+                height: unset;
+                width: fit-content;
+            });
         }
     }
     .funding-text{

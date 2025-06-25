@@ -57,13 +57,21 @@ numberOfLevels = 2
 
 </nav>
 
+<div class="header-image {{page_id}}"
 
+     {% if  page_id != 'my-sent-messages' and
+             page_id != 'internal-documents'  and
+             page_id != 'living-documents'  and
+             page_id != 'dissemination-report-forms'  and
+             page_id != 'profile'  and
+             page_id != 'users'  and
+             page_id != 'mailing' %}
 
+     {% if user %} style="margin-top: 75px;" {% endif %}
 
+     {% endif %}
 
-
-
-<div class="header-image {{page_id}}" {% if user %} style="margin-top: 75px;" {% endif %}>
+>
     {% if page_id == 'home' %}
     <div class="video-carousel">
         <div class="carousel-slide">

@@ -367,6 +367,11 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 999;
+
+            .breakpoint-large-down({
+                width: 90vw;
+                height: auto;
+            });
         }
 
         .modal-content{
@@ -389,6 +394,11 @@
                     max-height: 60vh;
                     border-radius: 15px;
                     object-fit: contain;
+
+                    .breakpoint-large-down({
+                        max-width: 90vw;
+                        max-height: 90vh;
+                    });
                 }
             }
 
@@ -437,10 +447,10 @@
         background-position: center;
         z-index: 5;
 
-        .breakpoint-small-down({
-            width: 48px;
-            height: 48px;
-        });
+        //.breakpoint-small-down({
+        //    width: 48px;
+        //    height: 48px;
+        //});
     }
 
     .next {
@@ -593,7 +603,7 @@
         padding: 10px 25px;
         margin-right: 20px;
         .breakpoint-large-down({
-            margin-right: 0;
+            margin-right: 10px;
             margin-bottom: 20px;
             padding: 10px 15px;
         });
