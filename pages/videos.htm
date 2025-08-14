@@ -103,7 +103,6 @@ return Response::download($pathToFile, $fileName, $headers);
                     <div class="record_name">{{ record.name|length > 65 ? record.name|striptags|slice(0, 65)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.name|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
                     {% if record.file %}
                     <div class="links">
-                            <!--<video controls="" width="100%" height="353"><source src="{{record.file.path}}" type="video/mp4"></video>-->
                             <a class="btn btn-primary download" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}">Download</a>
                         </div>
                     </div>
