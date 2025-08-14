@@ -39,33 +39,33 @@ description_limit = 0
     <div class="container">
         <div class="row top-xs between-xs footer-social-menu-container">
             <div class="col-md-2 col-xs-12 start-md center-xs">
-                <img class="project_footer_logo" src="{{'valor_logo_footer.png'|media}}" alt="VALOR project logo">
+                <img class="project_footer_logo" src="{{'valor_logo_footer.png'|media}}" alt="VALOR project logo" aria-label="VALOR project logo" title="VALOR project logo">
             </div>
             <div class="col-md-8 col-xs-12 start-md center-xs">
                 {% component 'footer_menu' %}
             </div>
             <div class="col-md-2 col-xs-12 end-md center-xs social-networks">
                 {% if enable_facebook and facebook_url %}
-                <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook normal" target="_blank"></a>
+                <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook normal" target="_blank" title="Facebook"></a>
                 {% endif %}
                 {% if enable_twitter and twitter_url %}
-                <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank"></a>
+                <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank" title="Twitter (X)"></a>
                 {% endif %}
                 {% if enable_linkedin and linkedin_url %}
-                <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
+                <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank" title="LinkedIn"></a>
                 {% endif %}
 
                 {% if enable_instagram and instagram_url %}
-                <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank"></a>
+                <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank" title="Instagram"></a>
                 {% endif %}
                 {% if this.theme.bluesky_url %}
-                <a href="{{this.theme.bluesky_url}}" target="_blank" class="pr p-secondary p-bluesky small"></a>
+                <a href="{{this.theme.bluesky_url}}" target="_blank" class="pr p-secondary p-bluesky small" title="BlueSky"></a>
                 {% endif %}
                 {% if this.theme.threads_url %}
-                <a href="{{this.theme.threads_url}}" target="_blank" class="pr p-secondary p-threads small"></a>
+                <a href="{{this.theme.threads_url}}" target="_blank" class="pr p-secondary p-threads small" title="Threads"></a>
                 {% endif %}
                  {% if enable_youtube and youtube_url %}
-                <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank"></a>
+                <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank" title="Youtube"></a>
                 {% endif %}
 
             </div>
@@ -76,7 +76,7 @@ description_limit = 0
                 {% if (footer_funds_flag != null) %}
                 <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
                     {% if footer_funds_flag %}
-                    <img class="mr-0 mr-lg-1" src="{{ footer_funds_flag }}"  alt="VALOR EU funding logo"/>
+                    <img class="mr-0 mr-lg-1" src="{{ footer_funds_flag }}"  alt="VALOR EU funding logo" aria-label="VALOR EU funding logo" title="VALOR EU funding logo" />
                     {% endif %}
                 </div>
                 {% endif %}
@@ -97,8 +97,8 @@ description_limit = 0
                 <a href="{{'privacy-policy'|page}}">Privacy policy</a>
             </div>
             <div class="col-md-6 col-xs-12 end-md center-xs powered-by">
-                <span>Designed and powered by <a href="https://pensoft.net/" target="_blank">
-                    <img class="pensoft_logo" src="{{ 'pensoft-logo.svg'|media }}" alt="Pensoft Publishers logo" /></a>
+                <span>Designed and powered by <a href="https://pensoft.net/" target="_blank" title="Pensoft Publishers">
+                    <img class="pensoft_logo" src="{{ 'pensoft-logo.svg'|media }}" alt="Pensoft Publishers logo" aria-label="Pensoft Publishers logo" title="Pensoft Publishers logo" /></a>
                 </span>
             </div>
         </div>
