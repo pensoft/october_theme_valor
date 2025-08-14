@@ -38,7 +38,7 @@ description_limit = 0
     <div class="container">
         <div class="row top-xs between-xs footer-social-menu-container">
             <div class="col-md-2 col-xs-12 start-md center-xs">
-                <img class="project_footer_logo" src="{{'valor_logo_footer.png'|media}}">
+                <img class="project_footer_logo" src="{{'valor_logo_footer.png'|media}}" alt="VALOR project logo">
             </div>
             <div class="col-md-8 col-xs-12 start-md center-xs">
                 {% component 'footer_menu' %}
@@ -75,7 +75,7 @@ description_limit = 0
                 {% if (footer_funds_flag != null) %}
                 <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
                     {% if footer_funds_flag %}
-                    <img class="mr-0 mr-lg-1" src="{{ footer_funds_flag }}"/>
+                    <img class="mr-0 mr-lg-1" src="{{ footer_funds_flag }}"  alt="VALOR EU funding logo"/>
                     {% endif %}
                 </div>
                 {% endif %}
@@ -97,7 +97,7 @@ description_limit = 0
             </div>
             <div class="col-md-6 col-xs-12 end-md center-xs powered-by">
                 <span>Designed and powered by <a href="https://pensoft.net/" target="_blank">
-                    <img class="pensoft_logo" src="{{ 'pensoft-logo.svg'|media }}" /></a>
+                    <img class="pensoft_logo" src="{{ 'pensoft-logo.svg'|media }}" alt="Pensoft Publishers logo" /></a>
                 </span>
             </div>
         </div>
