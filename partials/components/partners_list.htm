@@ -1,7 +1,7 @@
 {% for partner in partners %}
 <div class="col-xs-12 partner-item">
     <div class="row middle-xs">
-        <div class="col-xs-12 col-md-1 partner_logo"><a href="{{partner.instituion_url}}" target="_blank"><img alt="{{ partner.instituion }}" src="{{partner.cover.thumb(132,auto,{'mode':'crop'})}}"></a></div>
+        <div class="col-xs-12 col-md-1 partner_logo"><a href="{{partner.instituion_url}}" target="_blank"><img alt="{{ partner.instituion }}" aria-label="{{ partner.instituion }}" src="{{partner.cover.thumb(132,auto,{'mode':'crop'})}}"></a></div>
         <div class="col-xs-12 col-md-10 partner_link"><a href="{{partner.instituion_url}}" target="_blank">{{partner.instituion}}</a></div>
         <div class="col-xs-12 partner_description mt-2">{{partner.content|raw}}</div>
     </div>
@@ -19,9 +19,9 @@
                         <div class="contact_info row">
                             <div class="col-xs-12 coordinator_image">
                                 {% if profile.avatar %}
-                                <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(236,236,{'mode':'crop'})}}">
+                                <img alt="{{ profile.names }}" aria-label="{{ profile.names }}" src="{{profile.avatar.thumb(236,236,{'mode':'crop'})}}">
                                 {% else %}
-                                <img alt="{{ profile.names }}" src="{{ 'person.svg'|media }}" width="236" height="236" class="no-image">
+                                <img alt="{{ profile.names }}" aria-label="{{ profile.names }}" src="{{ 'person.svg'|media }}" width="236" height="236" class="no-image">
                                 {% endif %}
                             </div>
                             <div class="col-xs-12 coordinator_info">

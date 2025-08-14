@@ -14,12 +14,12 @@ description_limit = 0
 ==
 {% if this.page.id != 'login' %}
     {% if this.theme.subscribe %}
-        <div class="container-fluid subscriber">
+        <div class="container-fluid subscriber" role="contentinfo">
             <video autoplay loop muted playsinline class="video-media">
                 <source src="{{ 'video-Subscribe.mov'|media }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div class="container">
+            <div class="container" role="banner">
                 <div class="content hero">
                     <div class="row middle-xs between-md around-xs sub-title">
                         <div class="col-md-9 cl-xs-12"><h1>Subscribe to our newsletter!</h1></div>
@@ -53,7 +53,7 @@ description_limit = 0
                 {% if enable_linkedin and linkedin_url %}
                 <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
                 {% endif %}
-               
+
                 {% if enable_instagram and instagram_url %}
                 <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank"></a>
                 {% endif %}

@@ -84,7 +84,7 @@ function onStart(){
                 <div class="row news-item">
                     <div class="col-md-12 col-xs-12 home-news-cover">
                         <a href="/news/{{highlight.slug}}">
-                            <img src="{{ highlight.cover.path}}" alt="{{ highlight.title }}">
+                            <img src="{{ highlight.cover.path}}" alt="{{ highlight.title }}" aria-label="{{ highlight.title }}">
                             <div class="btn read-more-btn btn-primary">Read</div>
                             <div class="news-date">{{ highlight.published_at|date('d.m.Y') }}</div>
                             <div class="blur_filter"></div>

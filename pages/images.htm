@@ -93,8 +93,8 @@ return Response::download($pathToFile, $fileName, $headers);
                     <div class="row news-item">
                         <div class="col-md-12 col-xs-12 home-news-cover">
                             <a onclick="openModal(); currentSlide({{ k + 1 }})">
-                                <img src="{{ image.path}}" alt="{{ image.name }}">
-                                <div class="btn zoom-btn btn-primary"><img src="{{'zoom.svg'|media}}" class="zoom_icon"></div>
+                                <img src="{{ image.path}}" alt="{{ image.name }}" aria-label="{{ image.name }}">
+                                <div class="btn zoom-btn btn-primary"><img src="{{'zoom.svg'|media}}" alt="Zoom icon" aria-label="Zoom icon" class="zoom_icon"></div>
                                 <div class="blur_filter"></div>
                             </a>
                         </div>
@@ -109,7 +109,7 @@ return Response::download($pathToFile, $fileName, $headers);
                             <button type="button" class="close" onclick="closeModal()">&times;</button>
                             {% for k, image in gallery.images %}
                             <div class="slides">
-                                <img src="{{ image.path}}" alt="{{ image.name }}">
+                                <img src="{{ image.path}}" alt="{{ image.name }}" aria-label="{{ image.name }}">
                             </div>
                             {% endfor %}
                             <!-- Next/previous controls -->
@@ -134,7 +134,7 @@ return Response::download($pathToFile, $fileName, $headers);
                 <div class="row news-item">
                     <div class="col-md-12 col-xs-12 home-news-cover">
                         <a href="/media-center/images/{{record.id}}">
-                            <img src="{{ record.images[0].path}}" alt="{{ record.name }}">
+                            <img src="{{ record.images[0].path}}" alt="{{ record.name }}" aria-label="{{ record.name }}">
                             <div class="btn read-more-btn btn-primary">View</div>
                             <div class="blur_filter"></div>
                         </a>

@@ -34,7 +34,7 @@ return Attendant::where('event_id', $id)
 ?>
 ==
 {% component 'session' %}
-<div class="container events">
+<div class="container events" role="contentinfo">
     <a href="{{'event-attendance-report'|page}}" class="btn btn-primary no-margin">Add event</a> &nbsp; &nbsp;
     <a href="{{'event-attendance-form'|page}}" class="btn btn-primary no-margin">Add attendance</a>
 
@@ -49,7 +49,7 @@ return Attendant::where('event_id', $id)
 
 
     <!--tabs content	-->
-    <div class="container-fluid">
+    <div class="container-fluid" role="contentinfo">
         <div class="container">
 
             <div class="row" id="listView">

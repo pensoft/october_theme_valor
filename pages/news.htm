@@ -133,7 +133,7 @@ $this['related'] = $related;
                 <div class="row">
                     <div class="col-xs-12">
                         {% if article.cover %}
-                        <img src="{{ article.cover.path }}" />
+                        <img src="{{ article.cover.path }}" alt="{{article.title}}" aria-label="{{article.title}}" />
                         <div class="blur_filter"></div>
                         {% endif %}
                         {% if article.caption %}
@@ -199,7 +199,7 @@ $this['related'] = $related;
                 <div class="row news-item">
                     <div class="col-md-12 col-xs-12 home-news-cover">
                         <a href="/news/{{record.slug}}">
-                            <img src="{{ record.cover.path}}" alt="{{ record.title }}">
+                            <img src="{{ record.cover.path}}" alt="{{ record.title }}" aria-label="{{record.title}}">
                             <div class="btn read-more-btn btn-primary">Read</div>
                             <div class="news-date">{{ record.published_at|date('d.m.Y') }}</div>
                             <div class="blur_filter"></div>

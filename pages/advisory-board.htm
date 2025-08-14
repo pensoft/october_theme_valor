@@ -29,9 +29,9 @@ $this['advisory_board'] = Profiles::where('category_id', 2)->get();
             <div class="contact_info row">
                 <div class="coordinator_image">
                     {% if profile.avatar %}
-                    <img src="{{profile.avatar.thumb(287, 262, {'mode':'crop'})}}" class="fr-fic fr-dii">
+                    <img src="{{profile.avatar.thumb(287, 262, {'mode':'crop'})}}" alt="{{profile.names}}" aria-label="{{profile.names}}" class="fr-fic fr-dii">
                     {% else %}
-                    <img src="{{'CMS_icons_avatar_ab.svg'|media}}" class="fr-fic fr-dii">
+                    <img src="{{'CMS_icons_avatar_ab.svg'|media}}" alt="Empty profile avatar icon" aria-label="Empty profile avatar icon" class="fr-fic fr-dii">
 
                     {% endif %}
                 </div>

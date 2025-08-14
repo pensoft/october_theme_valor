@@ -72,7 +72,7 @@ $this['slug'] = $this->param('slug');
 ==
 {% if not slug %}
 
-<div class="container-fluid events">
+<div class="container-fluid events" role="contentinfo">
 
     <div class="container">
         <div class="tabs">
@@ -117,7 +117,7 @@ $this['slug'] = $this->param('slug');
 {% else %}
 
     {% if entry %}
-    <div class="container">
+    <div class="container" role="contentinfo">
         <div class="row single-news-item">
             <div class="col-md-12 col-xs-12 mb-2">
                 <a href="/events" class="go-back-link">Back</a>
@@ -125,7 +125,7 @@ $this['slug'] = $this->param('slug');
             <div class="col-md-5 col-xs-12">
                 <div class="fixed_image">
                     {% if entry.cover_image %}
-                    <img class="content" src="{{ entry.cover_image|crop_image|resize(387, auto, { mode: 'crop' }) }}" />
+                    <img class="content" src="{{ entry.cover_image|crop_image|resize(387, auto, { mode: 'crop' }) }}" alt="{{entry.title}}" aria-label="{{entry.title}}" />
                     {% endif %}
 
                     {% if entry.url %}
