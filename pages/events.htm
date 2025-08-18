@@ -61,8 +61,16 @@ if($this['entry']['cover_image']){
 }
 $this['page_url'] = $this->pageUrl('');
 
-$this['entries2025'] = Entry::whereYear('start', Carbon::now()->year)->orderBy('start', 'asc')->paginate(20);
+//$this['entries2025'] = Entry::whereYear('start', Carbon::now()->year)->orderBy('start', 'asc')->paginate(20);
+//$this['entries2026'] = Entry::whereYear('start', '2026')->orderBy('start', 'desc')->paginate(20);
+
+
+$this['entries2025'] = Entry::where('end', '>=', Carbon::now())->orderBy('start', 'asc')->paginate(20);
+$this['past_entries2025'] = Entry::where('end', '<', Carbon::now())->orderBy('start', 'desc')->get();
+
 $this['entries2026'] = Entry::whereYear('start', '2026')->orderBy('start', 'asc')->paginate(20);
+$this['past_entries2026'] = Entry::whereYear('start', '2026')->where('end', '<', Carbon::now())->orderBy('start', 'desc')->get();
+
 
 $this['slug'] = $this->param('slug');
 
@@ -95,6 +103,11 @@ $this['slug'] = $this->param('slug');
                         {{ entries2025.fragment('listView').render|raw }}
                     </div>
                     {% endif %}
+
+                    {% if past_entries2025.count > 0 %}
+                    <h2 class="mt-4">Past events</h2>
+                    {% partial 'eventslist' records=past_entries2025 %}
+                    {% endif %}
                 </div>
                 <div id="events2026" class="subtabContent">
                     {% partial 'eventslist' records=entries2026 %}
@@ -103,6 +116,12 @@ $this['slug'] = $this->param('slug');
                         {{ entries2026.fragment('listView').render|raw }}
                     </div>
                     {% endif %}
+
+                    {% if past_entries2026.count > 0 %}
+                    <h2 class="mt-4">Past events</h2>
+                    {% partial 'eventslist' records=past_entries2026 %}
+                    {% endif %}
+
                 </div>
             </div>
         </div>
