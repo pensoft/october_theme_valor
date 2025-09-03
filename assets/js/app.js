@@ -20,8 +20,7 @@ var documentHasScroll = function() {
 
 window.addEventListener('scroll', function (e) {
     var headernavbar = document.getElementById("headernavbar");
-    if (window.scrollY > headernavbar.offsetHeight){
-        var headerNavbarNav = document.querySelector('#headerNavbarNav')
+    if (window.scrollY > 50){ // Use a fixed threshold instead of navbar height
         headernavbar.classList.add('scrolled');
     }else{
         headernavbar.classList.remove('scrolled');
@@ -114,27 +113,7 @@ $(document).ready(function() {
 
     $("nav").removeClass("no-transition");
 
-    if (width < 992) { // mobile
-        $('#menuToggle input[type="checkbox"]').change(function(){
-            var checked = $(this).is(":checked");
-            if(checked){
-                $('#menu').show("slide", { direction: "right" }, 400);
-                $('#search').hide();
-                $('#menu, #menu *').css({
-                    'visibility': 'visible'
-                });
-                $('body', 'html').css({
-                    'overflow': 'hidden'
-                });
-            }else{
-                $('#menu').hide("slide", { direction: "right" }, 400);
-                $('#search').hide();
-                $('body', 'html').css({
-                    'overflow': 'auto'
-                });
-            }
-        });
-    }
+    initMobileMenu();
 
 
     $('body').on('click', '.work_packages .accordion-toggle, .messages .accordion-toggle, .pilots .accordion-toggle, .media_images .accordion-toggle', function () {
@@ -781,8 +760,38 @@ function getScreenSize() {
     return {'width': myWidth, 'height': myHeight};
 }
 
+// Mobile menu toggle functionality
+function initMobileMenu() {
+    if (width < 992) { // mobile
+        $('#hamburger-menu').off('change').on('change', function(){
+            var checked = $(this).is(":checked");
+            if(checked){
+                $('#menu').show("slide", { direction: "right" }, 400);
+                $('#search').hide();
+                $('#mobile-navbar-brand').hide(); // Hide logo when menu opens
+                $('#menu, #menu *').css({
+                    'visibility': 'visible'
+                });
+                $('body, html').css({
+                    'overflow': 'hidden'
+                });
+            }else{
+                $('#menu').hide("slide", { direction: "right" }, 400);
+                $('#search').hide();
+                $('#mobile-navbar-brand').show(); // Show logo when menu closes
+                $('body, html').css({
+                    'overflow': 'auto'
+                });
+            }
+        });
+    }
+}
+
 function init() {
     window.addEventListener('resize', function () {
+        // Update width variable on resize
+        width = window.innerWidth;
+        
         if (isBreakpointLarge()) {
             $('#card-carousel').slick('unslick');
         } else {
@@ -797,6 +806,10 @@ function init() {
                 });
              }
         }
+        
+        // Reinitialize mobile menu on resize
+        initMobileMenu();
+        
         // keepFooter(documentHasScroll());
 
     });
