@@ -62,43 +62,44 @@ return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
-<div class="container">
+<section class="container" aria-labelledby="newsletters-heading">
+    <h2 id="newsletters-heading" class="sr-only">Newsletters</h2>
 
-		{% set records = mediaNewslettersList %}
-		{% set displayColumn = mediaNewslettersList.displayColumn %}
-		{% set noRecordsMessage = mediaNewslettersList.noRecordsMessage %}
-		{% set detailsPage = mediaNewslettersList.detailsPage %}
-		{% set detailsKeyColumn = mediaNewslettersList.detailsKeyColumn %}
-		{% set detailsUrlParameter = mediaNewslettersList.detailsUrlParameter %}
+    {% set records = mediaNewslettersList %}
+    {% set displayColumn = mediaNewslettersList.displayColumn %}
+    {% set noRecordsMessage = mediaNewslettersList.noRecordsMessage %}
+    {% set detailsPage = mediaNewslettersList.detailsPage %}
+    {% set detailsKeyColumn = mediaNewslettersList.detailsKeyColumn %}
+    {% set detailsUrlParameter = mediaNewslettersList.detailsUrlParameter %}
 
-        {% if records.count() %}
-        <div class="row" style="width: 100%;">
-            {% for record in records %}
-            {% spaceless %}
+    {% if records.count() %}
+    <div class="row" style="width: 100%;">
+        {% for record in records %}
+        {% spaceless %}
 
-            <div class="col-md-4 col-xs-12 mb-4">
-                <div class="logo-item">
-                    <div class="logo-container {{record.name|slug}} {{record.name}}">
-                        <img src="{{record.newsletter_image.path}}" title="{{record.name}}" alt="{{record.name}}" aria-label="{{record.name}}">
-                    </div>
-                    <div class="date">{{record.date|date("j M Y")}}</div>
-                    <div class="record_name">{{record.name}}</div>
-                    <div class="links">
-                        {% if record.file %}
-                        <a href="{{record.file.path}}" target="_blank" data-attach-loading class="btn btn-primary"><i></i> Download</a>
-                        {% endif %}
-                        {% if record.url %}
-                        <a class="btn btn-primary" href="{{record.url}}" target="_blank">Read the newsletter</a>
-                        {% endif %}
-                    </div>
+        <article class="col-md-4 col-xs-12 mb-4">
+            <div class="logo-item">
+                <div class="logo-container {{record.name|slug}} {{record.name}}">
+                    <img src="{{record.newsletter_image.path}}" alt="{{record.name}}">
+                </div>
+                <div class="date">{{record.date|date("j M Y")}}</div>
+                <div class="record_name">{{record.name}}</div>
+                <div class="links">
+                    {% if record.file %}
+                    <a href="{{record.file.path}}" target="_blank" rel="noopener noreferrer" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} (opens in new window)"><i aria-hidden="true"></i> Download</a>
+                    {% endif %}
+                    {% if record.url %}
+                    <a class="btn btn-primary" href="{{record.url}}" target="_blank" rel="noopener noreferrer" aria-label="Read {{record.name}} (opens in new window)">Read the newsletter</a>
+                    {% endif %}
                 </div>
             </div>
-            {% endspaceless %}
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="commig_soon">
-            Coming soon...
-        </div>
-        {% endif %}
-</div>
+        </article>
+        {% endspaceless %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="commig_soon">
+        Coming soon...
+    </div>
+    {% endif %}
+</section>

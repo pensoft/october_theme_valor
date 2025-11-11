@@ -21,7 +21,7 @@ secondaryClasses = "dropdown-menu"
 numberOfLevels = 2
 ==
 {% if user %}
-<nav class="fixed navbar-loggedin-user" role="navigation">
+<nav class="fixed navbar-loggedin-user" role="navigation" aria-label="User navigation">
     <div class="navbar-collapse collapse row middle-xs">
         <div class="col-xs-12 col-md-9">{% component 'login' %}</div>
         <div class="col-xs-2 col-md-2 hidden-xs middle-xs profilename_and_avatar">
@@ -38,16 +38,16 @@ numberOfLevels = 2
 {% endif %}
 
 
-<nav class="pr-1 pl-1 navbar fixed" id="headernavbar" role="navigation">
+<nav class="pr-1 pl-1 navbar fixed" id="headernavbar" role="navigation" aria-label="Main navigation">
     <!-- Mobile Logo -->
-    <a href="{{'home'|page}}" class="navbar-brand mobile-logo" id="mobile-navbar-brand" style="background: url('{{ this.theme.site_logo.getPath() }}') center no-repeat; background-size: contain;"></a>
-    
+    <a href="{{'home'|page}}" class="navbar-brand mobile-logo" id="mobile-navbar-brand" style="background: url('{{ this.theme.site_logo.getPath() }}') center no-repeat; background-size: contain;" aria-label="Home"></a>
+
     <div id="menuToggle">
-        <input type="checkbox" name="hamburger-menu" id="hamburger-menu" title="VALOR project mobile menu" />
-        <label for="hamburger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <input type="checkbox" name="hamburger-menu" id="hamburger-menu" aria-label="Toggle mobile menu" />
+        <label for="hamburger-menu" aria-label="Menu toggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </label>
         {% component 'menu' %}
     </div>
@@ -55,35 +55,34 @@ numberOfLevels = 2
     <!-- Desktop Navigation -->
     <div class="container menu_container">
         <div class="navbar-collapse collapse center-xs" id="headerNavbarNav" style="display: none;">
-            <a href="{{'home'|page}}" class="navbar-brand" id="navbar-brand" style="background: url('{{ this.theme.site_logo.getPath() }}') center no-repeat; background-size: contain;"></a>
+            <a href="{{'home'|page}}" class="navbar-brand" id="navbar-brand" style="background: url('{{ this.theme.site_logo.getPath() }}') center no-repeat; background-size: contain;" aria-label="Home"></a>
             {% component 'menu' %}
         </div>
     </div>
 
 </nav>
 
-<div class="header-image {{page_id}}"
+<header class="header-image {{page_id}}"
 
-     {% if  page_id != 'my-sent-messages' and
-             page_id != 'internal-documents'  and
-             page_id != 'living-documents'  and
-             page_id != 'dissemination-report-forms'  and
-             page_id != 'profile'  and
-             page_id != 'users'  and
-             page_id != 'documents-search'  and
-             page_id != 'mailing' %}
+        {% if  page_id != 'my-sent-messages' and
+        page_id != 'internal-documents'  and
+        page_id != 'living-documents'  and
+        page_id != 'dissemination-report-forms'  and
+        page_id != 'profile'  and
+        page_id != 'users'  and
+        page_id != 'documents-search'  and
+        page_id != 'mailing' %}
 
-     {% if user %} style="margin-top: 75px;" {% endif %}
+        {% if user %} style="margin-top: 75px;" {% endif %}
 
-     {% endif %}
+        {% endif %}
 
 >
     {% if page_id == 'home' %}
     <div class="video-carousel">
         <div class="carousel-slide">
-            <video autoplay loop muted playsinline class="header-video-media">
+            <video autoplay loop muted playsinline class="header-video-media" aria-label="VALOR project background video">
                 <source src="{{ 'Homepage-Header-video.mov'|media }}" type="video/mp4">
-                <track src="" kind="captions" srclang="en" label="English">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -112,9 +111,8 @@ numberOfLevels = 2
     {% elseif page_id == 'login' or page_id == 'Forgot'  %}
     <div class="video-carousel">
         <div class="carousel-slide">
-            <video autoplay loop muted playsinline class="header-video-media">
+            <video autoplay loop muted playsinline class="header-video-media" aria-label="Header background video">
                 <source src="{{ 'Header-video.mov'|media }}" type="video/mp4">
-                <track src="" kind="captions" srclang="en" label="English">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -125,14 +123,13 @@ numberOfLevels = 2
         {% if this.page.header_subtitle %}
         <div class="sub-title subtext"><h1>{{this.page.header_subtitle}}</h1></div>
         {% endif %}
-        <video autoplay loop muted playsinline class="header-video">
+        <video autoplay loop muted playsinline class="header-video" aria-label="Header background video">
             <source src="{{ 'Header-video.mov'|media }}" type="video/mp4">
-            <track src="" kind="captions" srclang="en" label="English">
             Your browser does not support the video tag.
         </video>
     </div>
     {% endif %}
-</div>
+</header>
 
 
 {% if user %}

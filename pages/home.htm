@@ -33,63 +33,62 @@ function onStart(){
 }
 ?>
 ==
-<div class="container800 intro_content">
+<section class="container800 intro_content" aria-label="Introduction">
     {% component 'intro' %}
-</div>
+</section>
 
 
-<div class="container pollinators_bees">
+<section class="container pollinators_bees" aria-labelledby="pollinators-heading">
+    <h2 id="pollinators-heading" class="sr-only">Pollinator statistics</h2>
     <div class="row">
         <div class="col-md-6 col-xs-12 center-xs pollinators">
-            <video autoplay loop muted playsinline class="video-media">
+            <video autoplay loop muted playsinline class="video-media" aria-label="Pollinators background video">
                 <source src="{{ 'video3.mp4'|media }}" type="video/mp4">
-                <track src="" kind="captions" srclang="en" label="English">
                 Your browser does not support the video tag.
             </video>
             <div class="content" data-aos="fade-left">
                 Pollinators contribute to the reproduction of about 75% of the world's leading food crops
-                <a class="tooltiplink" href="https://doi.org/10.1098/rspb.2006.3721" target="_blank" data-title="*Klein et al. 2007">*</a>
+                <a class="tooltiplink" href="https://doi.org/10.1098/rspb.2006.3721" target="_blank" rel="noopener noreferrer" data-title="*Klein et al. 2007" aria-label="Reference: Klein et al. 2007 (opens in new window)">*</a>
             </div>
         </div>
 
         <div class="col-md-6 col-xs-12 center-xs bees">
-            <video autoplay loop muted playsinline class="video-media">
+            <video autoplay loop muted playsinline class="video-media" aria-label="Bees background video">
                 <source src="{{ 'video2.mp4'|media }}" type="video/mp4">
-                <track src="" kind="captions" srclang="en" label="English">
                 Your browser does not support the video tag.
             </video>
             <div class="content" data-aos="fade-right">
                 However,
                 <span class="1_in_3">1 in 3</span>
                 bee, butterfly and hoverfly species is in decline
-                <a class="tooltiplink" href="https://www.iucnredlist.org/" target="_blank" data-title="*IUCN Red List">*</a>
+                <a class="tooltiplink" href="https://www.iucnredlist.org/" target="_blank" rel="noopener noreferrer" data-title="*IUCN Red List" aria-label="Reference: IUCN Red List (opens in new window)">*</a>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 
 
 {% if highlights.count %}
 <!-- latest from news -->
-<div class="container highlights-news">
+<section class="container highlights-news" aria-labelledby="latest-news-heading">
     <div class="row">
         <div class="col-md-4 col-xs-12 start-md center-xs">
             <div class="view_all_container">
-                <h1 class="display-1">Latest news from<br>VALOR</h1>
+                <h1 id="latest-news-heading" class="display-1">Latest news from<br>VALOR</h1>
                 <a class="btn btn-primary view_all" href="{{'news'|page}}">View all</a>
             </div>
         </div>
         <div class="col-md-8 col-xs-12">
             {% for highlight in highlights %}
-            <div class="home-news-highlights">
+            <article class="home-news-highlights">
                 <div class="row news-item">
                     <div class="col-md-12 col-xs-12 home-news-cover">
-                        <a href="/news/{{highlight.slug}}">
-                            <img src="{{ highlight.cover.path}}" alt="{{ highlight.title }}" aria-label="{{ highlight.title }}">
-                            <div class="btn read-more-btn btn-primary">Read</div>
+                        <a href="/news/{{highlight.slug}}" aria-label="{{ highlight.title }}">
+                            <img src="{{ highlight.cover.path}}" alt="{{ highlight.title }}">
+                            <div class="btn read-more-btn btn-primary" aria-hidden="true">Read</div>
                             <div class="news-date">{{ highlight.published_at|date('d.m.Y') }}</div>
-                            <div class="blur_filter"></div>
+                            <div class="blur_filter" aria-hidden="true"></div>
                         </a>
                     </div>
                     <div class="col-md-12 col-xs-12 news-content">
@@ -99,10 +98,10 @@ function onStart(){
                         </a>
                     </div>
                 </div>
-            </div>
+            </article>
             {% endfor %}
 
         </div>
     </div>
-</div>
+</section>
 {% endif %}

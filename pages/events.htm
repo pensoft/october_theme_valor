@@ -80,23 +80,24 @@ $this['slug'] = $this->param('slug');
 ==
 {% if not slug %}
 
-<div class="container-fluid events" role="contentinfo">
+<section class="container-fluid events" aria-labelledby="events-heading">
+    <h1 id="events-heading" class="sr-only">Events</h1>
 
     <div class="container">
-        <div class="tabs">
-            <a class="" href="#listView"></a>
-            <a class="" href="#calendarView"></a>
-        </div>
+        <nav class="tabs" aria-label="Event view options">
+            <a href="#listView"><span class="sr-only">List view</span></a>
+            <a href="#calendarView"><span class="sr-only">Calendar view</span></a>
+        </nav>
     </div>
 
     <div class="container events_container">
         <div class="row" id="listView">
             <div class="subtabs_events">
-                <ul class="ui-tabs-nav">
-                    <li><a href="#events2025">2025</a></li>
-                    <li><a href="#events2026">2026</a></li>
+                <ul class="ui-tabs-nav" role="tablist">
+                    <li role="presentation"><a href="#events2025" role="tab">2025</a></li>
+                    <li role="presentation"><a href="#events2026" role="tab">2026</a></li>
                 </ul>
-                <div id="events2025" class="subtabContent">
+                <div id="events2025" class="subtabContent" role="tabpanel">
                     {% partial 'eventslist' records=entries2025 %}
                     {% if entries2025.count > 20 %}
                     <div class="row container">
@@ -109,7 +110,7 @@ $this['slug'] = $this->param('slug');
                     {% partial 'eventslist' records=past_entries2025 %}
                     {% endif %}
                 </div>
-                <div id="events2026" class="subtabContent">
+                <div id="events2026" class="subtabContent" role="tabpanel">
                     {% partial 'eventslist' records=entries2026 %}
                     {% if entries2026.count > 20 %}
                     <div class="row container">
@@ -130,49 +131,49 @@ $this['slug'] = $this->param('slug');
         </div>
     </div>
 
-</div>
+</section>
 
 
 {% else %}
 
-    {% if entry %}
-    <div class="container" role="contentinfo">
-        <div class="row single-news-item">
-            <div class="col-md-12 col-xs-12 mb-2">
-                <a href="/events" class="go-back-link">Back</a>
+{% if entry %}
+<article class="container">
+    <div class="row single-news-item">
+        <div class="col-md-12 col-xs-12 mb-2">
+            <a href="/events" class="go-back-link">Back</a>
+        </div>
+        <div class="col-md-5 col-xs-12">
+            <div class="fixed_image">
+                {% if entry.cover_image %}
+                <img class="content" src="{{ entry.cover_image|crop_image|resize(387, auto, { mode: 'crop' }) }}" alt="{{entry.title}}" />
+                {% endif %}
+
+                {% if entry.url %}
+                <a href="{{entry.url}}" class="read_more" target="_blank" rel="noopener noreferrer">View event <i aria-hidden="true"></i></a>
+                {% endif %}
             </div>
-            <div class="col-md-5 col-xs-12">
-                <div class="fixed_image">
-                    {% if entry.cover_image %}
-                    <img class="content" src="{{ entry.cover_image|crop_image|resize(387, auto, { mode: 'crop' }) }}" alt="{{entry.title}}" aria-label="{{entry.title}}" />
-                    {% endif %}
-
-                    {% if entry.url %}
-                    <a href="{{entry.url}}" class="read_more" target="_blank">View event <i></i></a>
-                    {% endif %}
-                </div>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <div class="text-published">{% if entry.start|date("j") == entry.end|date("j") %} {{entry.start|date("j M Y")}} {% elseif entry.start|date("M") == entry.end|date("M") %} {{entry.start|date("j")}}-{{entry.end|date("j M Y")}} {% else %} {{entry.start|date("d M Y")}} - {{entry.end|date("d M Y")}}{% endif %}<br>{{entry.place}}</div>
+            <div class="news-title">
+                <h1 class="single-new-title">{{entry.title}}</h1>
             </div>
-            <div class="col-md-7 col-xs-12">
-                <div class="text-published">{% if entry.start|date("j") == entry.end|date("j") %} {{entry.start|date("j M Y")}} {% elseif entry.start|date("M") == entry.end|date("M") %} {{entry.start|date("j")}}-{{entry.end|date("j M Y")}} {% else %} {{entry.start|date("d M Y")}} - {{entry.end|date("d M Y")}}{% endif %}<br>{{entry.place}}</div>
-                <div class="news-title">
-                    <h1 class="single-new-title">{{entry.title}}</h1>
-                </div>
 
-                <div class="content">
-                    {{entry.description|raw}}
-                </div>
+            <div class="content">
+                {{entry.description|raw}}
+            </div>
 
-                <div class="share_container">
-                    <div class="share_label">Share</div>
-                    <div class="share_icons">
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="pr p-linkedin big"></a>
-                        <a href="https://bsky.app/intent/compose?text={{page_url}}" class="pr p-bluesky big"  target="_blank"></a>
-                    </div>
+            <div class="share_container">
+                <div class="share_label">Share</div>
+                <div class="share_icons">
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" rel="noopener noreferrer" class="pr p-linkedin big" aria-label="Share on LinkedIn (opens in new window)"></a>
+                    <a href="https://bsky.app/intent/compose?text={{page_url}}" target="_blank" rel="noopener noreferrer" class="pr p-bluesky big" aria-label="Share on Bluesky (opens in new window)"></a>
                 </div>
             </div>
         </div>
     </div>
+</article>
 
-    {% endif %}
+{% endif %}
 
 {% endif %}

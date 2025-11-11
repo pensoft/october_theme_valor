@@ -63,7 +63,8 @@ return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
-<div class="container">
+<section class="container" aria-labelledby="logos-heading">
+    <h2 id="logos-heading" class="sr-only">Brand logos</h2>
     {% set records = mediaLogosList %}
     {% set displayColumn = mediaLogosList.displayColumn %}
     {% set noRecordsMessage = mediaLogosList.noRecordsMessage %}
@@ -72,54 +73,54 @@ return Response::download($pathToFile, $fileName, $headers);
     {% set detailsUrlParameter = mediaLogosList.detailsUrlParameter %}
 
     {% if records.count() %}
-        <div class="row">
-            <div class="col-md-12 col-xs-12 mb-2">
-                <a href="/media-center" class="go-back-link">Back</a>
-            </div>
-            {% for record in records %}
-            {% spaceless %}
-            {% if record.logo_image %}
+    <div class="row">
+        <div class="col-md-12 col-xs-12 mb-2">
+            <a href="/media-center" class="go-back-link">Back</a>
+        </div>
+        {% for record in records %}
+        {% spaceless %}
+        {% if record.logo_image %}
 
-            <div class="col-md-4 col-xs-12 mb-4">
-                <div class="logo-item">
-                    <div class="logo-container {{record.name|slug}} {{record.name}}">
-                        <img src="{{record.logo_image.path}}" title="{{record.name}}" alt="{{record.name}}" aria-label="{{record.name}}">
-                    </div>
-                    <div class="record_name">{{record.name}}</div>
-                    <div class="links">
-                        {% if record.file_jpg %}
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file_jpg.id}}" name="id">
-                        <button type="submit" data-attach-loading class="btn btn-primary"><i></i> JPG</button>
-                        {{ form_close() }}
-                        {% endif %}
+        <article class="col-md-4 col-xs-12 mb-4">
+            <div class="logo-item">
+                <div class="logo-container {{record.name|slug}} {{record.name}}">
+                    <img src="{{record.logo_image.path}}" alt="{{record.name}} logo">
+                </div>
+                <div class="record_name">{{record.name}}</div>
+                <div class="links">
+                    {% if record.file_jpg %}
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file_jpg.id}}" name="id">
+                    <button type="submit" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} as JPG"><i aria-hidden="true"></i> JPG</button>
+                    {{ form_close() }}
+                    {% endif %}
 
-                        {% if record.file_png %}
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file_png.id}}" name="id">
-                        <button type="submit" data-attach-loading class="btn btn-primary"><i></i> PNG</button>
-                        {{ form_close() }}
-                        {% endif %}
+                    {% if record.file_png %}
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file_png.id}}" name="id">
+                    <button type="submit" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} as PNG"><i aria-hidden="true"></i> PNG</button>
+                    {{ form_close() }}
+                    {% endif %}
 
-                        {% if record.file_eps %}
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <input type="hidden" value="{{record.file_eps.id}}" name="id">
-                        <button type="submit" data-attach-loading class="btn btn-primary"><i></i> SVG</button>
-                        {{ form_close() }}
-                        {% endif %}
+                    {% if record.file_eps %}
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file_eps.id}}" name="id">
+                    <button type="submit" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} as SVG"><i aria-hidden="true"></i> SVG</button>
+                    {{ form_close() }}
+                    {% endif %}
 
-                        {% if record.file_pdf %}
-                        <a href="{{record.file_pdf.path}}" target="_blank" class="btn btn-primary"><i></i> PDF</a>
-                        {% endif %}
-                    </div>
+                    {% if record.file_pdf %}
+                    <a href="{{record.file_pdf.path}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Download {{record.name}} as PDF (opens in new window)"><i aria-hidden="true"></i> PDF</a>
+                    {% endif %}
                 </div>
             </div>
-            {% endif %}
+        </article>
+        {% endif %}
 
-            {% endspaceless %}
-            {% else %}
-            {{ noRecordsMessage }}
-            {% endfor %}
-        </div>
+        {% endspaceless %}
+        {% else %}
+        {{ noRecordsMessage }}
+        {% endfor %}
+    </div>
     {% endif %}
-</div>
+</section>

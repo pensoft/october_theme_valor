@@ -27,76 +27,82 @@ use Pensoft\Accordions\Models\Item;
 ?>
 ==
 {% component 'siteSearchInclude' %}
-    <div class="container" role="contentinfo">
-        <div class="row top-xs">
-            <div class="col-md-4 col-xs-12">
-                {% component 'about' %}
-            </div>
-            <div class="col-md-8 col-xs-12">
-                <span class="tooltiptext" id="tooltip">Bulgaria</span>
-                {% partial 'components/pilots_map' %}
-            </div>
+<section class="container" aria-labelledby="pilots-heading">
+    <h2 id="pilots-heading" class="sr-only">Pilot regions</h2>
+    <div class="row top-xs">
+        <div class="col-md-4 col-xs-12">
+            {% component 'about' %}
         </div>
-
-        <div class="row top-xs pilots">
-            {% for key, item in regions %}
-                <div class="accordion-border key_{{key}}"><!-- 1 --><!-- css 1 -->
-                    <div class="row accordion-toggle">
-                        <div class="col-xs-10 start-xs title_container"><span class="number">{{key + 1}}</span> {{item.title}}, {{item.prefix}}</div>
-                        <div class="col-xs-2 end-xs-xs flag_container"><div class="flag-{{item.prefix}}"></div> </div>
-                        <div class="col-xs-12 plusminus"><span class="plus">READ MORE</span></div>
-                    </div>
-
-                    <div class="accordion-content" style="display: none;">
-                        {{item.body|raw}}
-                    </div>
-                </div>
-            {% endfor %}
+        <div class="col-md-8 col-xs-12">
+            <span class="tooltiptext" id="tooltip">Bulgaria</span>
+            {% partial 'components/pilots_map' %}
         </div>
-
     </div>
 
-<div class="container-fluid bg-secondary" role="contentinfo">
+    <div class="row top-xs pilots">
+        {% for key, item in regions %}
+        <article class="accordion-border key_{{key}}">
+            <div class="row accordion-toggle">
+                <div class="col-xs-10 start-xs title_container"><span class="number">{{key + 1}}</span> {{item.title}}, {{item.prefix}}</div>
+                <div class="col-xs-2 end-xs-xs flag_container"><div class="flag-{{item.prefix}}" aria-label="{{item.prefix}} flag"></div> </div>
+                <div class="col-xs-12 plusminus"><span class="plus">READ MORE</span></div>
+            </div>
+
+            <div class="accordion-content" style="display: none;">
+                {{item.body|raw}}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+</section>
+
+<section class="container-fluid bg-secondary" aria-labelledby="regional-info-heading">
+    <h2 id="regional-info-heading" class="sr-only">Regional information</h2>
     <div class="container">
         <div class="row middle-xs between-md around-xs">
             <div class="col-md-6 col-xs-12 attr_text">{% component 'regional' %}</div>
             <div class="col-md-5 col-xs-12 end-md center-xs  attr_table">
 
                 <table class="regions_info">
+                    <caption class="sr-only">Regional characteristics by focal region</caption>
+                    <thead>
                     <tr>
-                        <th>Focal Region</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
+                        <th scope="col">Focal Region</th>
+                        <th scope="col">1</th>
+                        <th scope="col">2</th>
+                        <th scope="col">3</th>
+                        <th scope="col">4</th>
+                        <th scope="col">5</th>
+                        <th scope="col">6</th>
+                        <th scope="col">7</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>Rare/threatened</td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"> </td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"> </td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                     </tr>
                     <tr>
                         <td>Beekeeping</td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                     </tr>
                     <tr>
-                        <td>Othe pollinators</td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td>Other pollinators</td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -105,30 +111,30 @@ use Pensoft\Accordions\Models\Item;
                     </tr>
                     <tr>
                         <td>Natura2000</td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Intensive farming</td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                     </tr>
                     <tr>
                         <td>Smallholders</td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -138,34 +144,34 @@ use Pensoft\Accordions\Models\Item;
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Fruit crops</td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Energy crops</td>
                         <td></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                     </tr>
                     <tr>
                         <td>Medicinal crops</td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -176,25 +182,26 @@ use Pensoft\Accordions\Models\Item;
                     <tr>
                         <td>Fodder crops</td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                     </tr>
                     <tr>
                         <td>Living Lab</td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
-                        <td><img src="{{'x.svg'|media}}" alt="Marked as available icon" aria-label="Marked as available icon"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
+                        <td><img src="{{'x.svg'|media}}" alt="Yes"></td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
-</div>
+</section>

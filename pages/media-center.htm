@@ -48,16 +48,17 @@ return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
-<div class="container">
+<section class="container" aria-labelledby="media-center-heading">
+    <h2 id="media-center-heading" class="sr-only">Media center</h2>
     <div class="row">
         {% if logos.count() %}
         <div class="col-md-4 col-xs-12">
             <div class="row media-item">
                 <div class="col-md-12 col-xs-12 mb-2 media-cover">
-                    <a href="{{'logo'|page}}">
-                        <img src="{{'1.png'|media}}" alt="Brand kit icon" title="Brand Kit" aria-label="Brand Kit">
-                        <div class="btn read-more-btn btn-primary">Open</div>
-                        <div class="blur_filter"></div>
+                    <a href="{{'logo'|page}}" aria-label="Brand Kit">
+                        <img src="{{'1.png'|media}}" alt="Brand kit">
+                        <div class="btn read-more-btn btn-primary" aria-hidden="true">Open</div>
+                        <div class="blur_filter" aria-hidden="true"></div>
                         <div class="media-title">Brand Kit</div>
                     </a>
                 </div>
@@ -70,10 +71,10 @@ return Response::download($pathToFile, $fileName, $headers);
         <div class="col-md-4 col-xs-12">
             <div class="row media-item">
                 <div class="col-md-12 col-xs-12 mb-2 media-cover">
-                    <a href="{{'podcasts'|page}}">
-                        <img src="{{'Brand-Kit.png'|media}}" alt="Podcasts icon" title="Podcasts" aria-label="Podcasts">
-                        <div class="btn read-more-btn btn-primary">Open</div>
-                        <div class="blur_filter"></div>
+                    <a href="{{'podcasts'|page}}" aria-label="Podcasts">
+                        <img src="{{'Brand-Kit.png'|media}}" alt="Podcasts">
+                        <div class="btn read-more-btn btn-primary" aria-hidden="true">Open</div>
+                        <div class="blur_filter" aria-hidden="true"></div>
                         <div class="media-title">Podcasts</div>
                     </a>
                 </div>
@@ -86,10 +87,10 @@ return Response::download($pathToFile, $fileName, $headers);
         <div class="col-md-4 col-xs-12">
             <div class="row media-item">
                 <div class="col-md-12 col-xs-12 mb-2 media-cover">
-                    <a href="/media-center/project-materials">
-                        <img src="{{'2.png'|media}}" alt="Project materials icon" title="Project materials" aria-label="Project materials">
-                        <div class="btn read-more-btn btn-primary">Open</div>
-                        <div class="blur_filter"></div>
+                    <a href="/media-center/project-materials" aria-label="Project materials">
+                        <img src="{{'2.png'|media}}" alt="Project materials">
+                        <div class="btn read-more-btn btn-primary" aria-hidden="true">Open</div>
+                        <div class="blur_filter" aria-hidden="true"></div>
                         <div class="media-title">Project materials</div>
                     </a>
                 </div>
@@ -102,10 +103,10 @@ return Response::download($pathToFile, $fileName, $headers);
         <div class="col-md-4 col-xs-12">
             <div class="row media-item">
                 <div class="col-md-12 col-xs-12 mb-2 media-cover">
-                    <a href="{{'videos'|page}}">
-                        <img src="{{'Brand-Kit.png'|media}}" alt="Videos icon" title="Videos" aria-label="Videos">
-                        <div class="btn read-more-btn btn-primary">Open</div>
-                        <div class="blur_filter"></div>
+                    <a href="{{'videos'|page}}" aria-label="Videos">
+                        <img src="{{'Brand-Kit.png'|media}}" alt="Videos">
+                        <div class="btn read-more-btn btn-primary" aria-hidden="true">Open</div>
+                        <div class="blur_filter" aria-hidden="true"></div>
                         <div class="media-title">Videos</div>
                     </a>
                 </div>
@@ -118,10 +119,10 @@ return Response::download($pathToFile, $fileName, $headers);
         <div class="col-md-4 col-xs-12">
             <div class="row media-item">
                 <div class="col-md-12 col-xs-12 mb-2 media-cover">
-                    <a href="{{'newsletters'|page}}">
-                        <img src="{{'Brand-Kit.png'|media}}" alt="Newsletters icon" title="Newsletters" aria-label="Newsletters">
-                        <div class="btn read-more-btn btn-primary">Open</div>
-                        <div class="blur_filter"></div>
+                    <a href="{{'newsletters'|page}}" aria-label="Newsletters">
+                        <img src="{{'Brand-Kit.png'|media}}" alt="Newsletters">
+                        <div class="btn read-more-btn btn-primary" aria-hidden="true">Open</div>
+                        <div class="blur_filter" aria-hidden="true"></div>
                         <div class="media-title">Newsletters</div>
                     </a>
                 </div>
@@ -129,30 +130,14 @@ return Response::download($pathToFile, $fileName, $headers);
         </div>
         {% endif %}
 
-
-<!--        {% if pressreleases.count() %}-->
-<!--        <div class="col-md-4 col-xs-12">-->
-<!--            <div class="row media-item">-->
-<!--                <div class="col-md-12 col-xs-12 mb-2 media-cover">-->
-<!--                    <a href="{{'press-releases'|page}}">-->
-<!--                        <img src="{{'Brand-Kit.png'|media}}" alt="Press releases icon" title="Press releases" aria-label="Press releases">-->
-<!--                        <div class="btn read-more-btn btn-primary">Open</div>-->
-<!--                        <div class="blur_filter"></div>-->
-<!--                        <div class="media-title">Press releases</div>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        {% endif %}-->
-
         {% if images.count() %}
         <div class="col-md-4 col-xs-12">
             <div class="row media-item">
                 <div class="col-md-12 col-xs-12 mb-2 media-cover">
-                    <a href="{{'images'|page}}">
-                        <img src="{{'3.png'|media}}" alt="Images icon" title="Images" aria-label="Images">
-                        <div class="btn read-more-btn btn-primary">Open</div>
-                        <div class="blur_filter"></div>
+                    <a href="{{'images'|page}}" aria-label="Images">
+                        <img src="{{'3.png'|media}}" alt="Images">
+                        <div class="btn read-more-btn btn-primary" aria-hidden="true">Open</div>
+                        <div class="blur_filter" aria-hidden="true"></div>
                         <div class="media-title">Images</div>
                     </a>
                 </div>
@@ -160,4 +145,4 @@ return Response::download($pathToFile, $fileName, $headers);
         </div>
         {% endif %}
     </div>
-</div>
+</section>

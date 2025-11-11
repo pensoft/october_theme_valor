@@ -63,37 +63,38 @@ return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
-<div class="container">
-        {% set records = mediaFlyersList %}
-        {% set displayColumn = mediaFlyersList.displayColumn %}
-        {% set noRecordsMessage = mediaFlyersList.noRecordsMessage %}
-        {% set detailsPage = mediaFlyersList.detailsPage %}
-        {% set detailsKeyColumn = mediaFlyersList.detailsKeyColumn %}
-        {% set detailsUrlParameter = mediaFlyersList.detailsUrlParameter %}
+<section class="container" aria-labelledby="project-materials-heading">
+    <h2 id="project-materials-heading" class="sr-only">Project materials</h2>
+    {% set records = mediaFlyersList %}
+    {% set displayColumn = mediaFlyersList.displayColumn %}
+    {% set noRecordsMessage = mediaFlyersList.noRecordsMessage %}
+    {% set detailsPage = mediaFlyersList.detailsPage %}
+    {% set detailsKeyColumn = mediaFlyersList.detailsKeyColumn %}
+    {% set detailsUrlParameter = mediaFlyersList.detailsUrlParameter %}
 
-        {% if records.count() %}
-        <div class="row">
-            <div class="col-md-12 col-xs-12 mb-2">
-                <a href="/media-center" class="go-back-link">Back</a>
-            </div>
-            {% for record in records %}
+    {% if records.count() %}
+    <div class="row">
+        <div class="col-md-12 col-xs-12 mb-2">
+            <a href="/media-center" class="go-back-link">Back</a>
+        </div>
+        {% for record in records %}
 
-            <div class="col-md-4 col-xs-12 mb-4">
-                <div class="logo-item">
-                    <div class="logo-container {{record.name|slug}} {{record.name}}">
-                        <img src="{{record.flyer_image.path}}" title="{{record.name}}" alt="{{record.name}}" aria-label="{{record.name}}">
-                    </div>
-                    <div class="record_name">{{record.name}}</div>
-                    <div class="links">
-                        {% if record.file %}
-                        <a href="{{record.file.path}}" target="_blank" data-attach-loading class="btn btn-primary"><i></i> Download</a>
-                        {% endif %}
-                    </div>
+        <article class="col-md-4 col-xs-12 mb-4">
+            <div class="logo-item">
+                <div class="logo-container {{record.name|slug}} {{record.name}}">
+                    <img src="{{record.flyer_image.path}}" alt="{{record.name}}">
+                </div>
+                <div class="record_name">{{record.name}}</div>
+                <div class="links">
+                    {% if record.file %}
+                    <a href="{{record.file.path}}" target="_blank" rel="noopener noreferrer" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} (opens in new window)"><i aria-hidden="true"></i> Download</a>
+                    {% endif %}
                 </div>
             </div>
-            {% else %}
-            {{ noRecordsMessage }}
-            {% endfor %}
-        </div>
-        {% endif %}
-</div>
+        </article>
+        {% else %}
+        {{ noRecordsMessage }}
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>

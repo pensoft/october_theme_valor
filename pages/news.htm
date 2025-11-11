@@ -122,65 +122,66 @@ $this['related'] = $related;
 ==
 
 
-    {% if is_detail_page %}
-    <div class="container1000">
-        <div class="row">
-            <div class="col-md-12 col-xs-12 mb-2">
-                <a href="/news" class="go-back-link">Back</a>
-            </div>
-            <div class="col-md-7 col-xs-12 single-news-item">
+{% if is_detail_page %}
+<article class="container1000">
+    <div class="row">
+        <div class="col-md-12 col-xs-12 mb-2">
+            <a href="/news" class="go-back-link">Back</a>
+        </div>
+        <div class="col-md-7 col-xs-12 single-news-item">
 
-                <div class="row">
-                    <div class="col-xs-12">
-                        {% if article.cover %}
-                        <img src="{{ article.cover.path }}" alt="{{article.title}}" aria-label="{{article.title}}" />
-                        <div class="blur_filter"></div>
-                        {% endif %}
-                        {% if article.caption %}
-                        <div class="caption">{{article.caption|raw}}</div>
-                        {% endif %}
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="text-published">{{article.published_at|date("j M Y")}}</div>
-                    </div>
-                    <div class="col-xs-12 news-title">
-                        <h1 class="single-new-title">{{article.title}}</h1>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <div class="content">
-                            {{article.content|raw}}
-                        </div>
-
-                        <div class="row middle-xs">
-                            <div class="col-xs col-md start-md center-xs share_container">
-                                <div class="share_container">
-                                    <div class="share_label">Share</div>
-                                    <div class="share_icons">
-                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="pr p-linkedin big"></a>
-                                        <a href="https://bsky.app/intent/compose?text={{page_url}}" class="pr p-bluesky big"  target="_blank"></a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {% if article.cover %}
+                    <img src="{{ article.cover.path }}" alt="{{article.title}}" />
+                    <div class="blur_filter" aria-hidden="true"></div>
+                    {% endif %}
+                    {% if article.caption %}
+                    <div class="caption">{{article.caption|raw}}</div>
+                    {% endif %}
+                </div>
+                <div class="col-xs-12">
+                    <div class="text-published">{{article.published_at|date("j M Y")}}</div>
+                </div>
+                <div class="col-xs-12 news-title">
+                    <h1 class="single-new-title">{{article.title}}</h1>
                 </div>
 
-            </div>
-            <div class="col-md-5 col-xs-12 related-articles-container">
-                <h2>Other news</h2>
-                {% partial 'relatedarticles' related=related %}
-            </div>
+                <div class="col-xs-12">
+                    <div class="content">
+                        {{article.content|raw}}
+                    </div>
 
+                    <div class="row middle-xs">
+                        <div class="col-xs col-md start-md center-xs share_container">
+                            <div class="share_container">
+                                <div class="share_label">Share</div>
+                                <div class="share_icons">
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" rel="noopener noreferrer" class="pr p-linkedin big" aria-label="Share on LinkedIn (opens in new window)"></a>
+                                    <a href="https://bsky.app/intent/compose?text={{page_url}}" target="_blank" rel="noopener noreferrer" class="pr p-bluesky big" aria-label="Share on Bluesky (opens in new window)"></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
         </div>
-    </div>
-    {% else %}
-<div class="container">
+        <aside class="col-md-5 col-xs-12 related-articles-container">
+            <h2>Other news</h2>
+            {% partial 'relatedarticles' related=related %}
+        </aside>
 
-    <div class="category-tabs-container mb-2">
+
+    </div>
+</article>
+{% else %}
+<section class="container" aria-labelledby="news-heading">
+    <h1 id="news-heading" class="sr-only">News</h1>
+
+    <nav class="category-tabs-container mb-2" aria-label="News categories">
         {% if categories.count > 0 %}
         <div class="row category-tabs" id="category-tabs">
             <a href="{{ 'news'|page }}" class="{{ 'all' == categoryId ? 'active' : '' }}">All News</a>
@@ -189,20 +190,20 @@ $this['related'] = $related;
             {% endfor %}
         </div>
         {% endif %}
-    </div>
+    </nav>
 
     <div class="news-list">
 
         <div class="row">
             {% for record in records %}
-            <div class="col-md-4 col-xs-12 home-news-records">
+            <article class="col-md-4 col-xs-12 home-news-records">
                 <div class="row news-item">
                     <div class="col-md-12 col-xs-12 home-news-cover">
-                        <a href="/news/{{record.slug}}">
-                            <img src="{{ record.cover.path}}" alt="{{ record.title }}" aria-label="{{record.title}}">
-                            <div class="btn read-more-btn btn-primary">Read</div>
+                        <a href="/news/{{record.slug}}" aria-label="{{record.title}}">
+                            <img src="{{ record.cover.path}}" alt="{{record.title}}">
+                            <div class="btn read-more-btn btn-primary" aria-hidden="true">Read</div>
                             <div class="news-date">{{ record.published_at|date('d.m.Y') }}</div>
-                            <div class="blur_filter"></div>
+                            <div class="blur_filter" aria-hidden="true"></div>
                         </a>
                     </div>
                     <div class="col-md-12 col-xs-12 news-content">
@@ -212,7 +213,7 @@ $this['related'] = $related;
                         </a>
                     </div>
                 </div>
-            </div>
+            </article>
             {% endfor %}
         </div>
         <div class="row container">
@@ -220,5 +221,5 @@ $this['related'] = $related;
         </div>
     </div>
 
-    {% endif %}
-</div>
+</section>
+{% endif %}

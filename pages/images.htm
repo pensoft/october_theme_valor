@@ -79,80 +79,82 @@ return Response::download($pathToFile, $fileName, $headers);
 
 {% set records = mediaImagesList %}
 
-<div class="container media-images-container">
+<section class="container media-images-container" aria-labelledby="images-heading">
+    <h2 id="images-heading" class="sr-only">Images</h2>
     {% if is_detail_page %}
-        <div class="row media_images news">
-            <div class="col-md-12 col-xs-12 mb-2">
-                <a href="/media-center/images" class="go-back-link">Back</a>
-            </div>
-
-            {% if gallery.images %}
-            <div class="row">
-                {% for k, image in gallery.images %}
-                <div class="col-md-4 col-xs-12 home-news-records">
-                    <div class="row news-item">
-                        <div class="col-md-12 col-xs-12 home-news-cover">
-                            <a onclick="openModal(); currentSlide({{ k + 1 }})">
-                                <img src="{{ image.path}}" alt="{{ image.name }}" aria-label="{{ image.name }}">
-                                <div class="btn zoom-btn btn-primary"><img src="{{'zoom.svg'|media}}" alt="Zoom icon" aria-label="Zoom icon" class="zoom_icon"></div>
-                                <div class="blur_filter"></div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-
-
-                <div class="control-popup modal fade" id="imagesModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <button type="button" class="close" onclick="closeModal()">&times;</button>
-                            {% for k, image in gallery.images %}
-                            <div class="slides">
-                                <img src="{{ image.path}}" alt="{{ image.name }}" aria-label="{{ image.name }}">
-                            </div>
-                            {% endfor %}
-                            <!-- Next/previous controls -->
-                            <a class="prev" onclick="plusSlides(-1)"></a>
-                            <a class="next" onclick="plusSlides(1)"></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            {% endif %}
+    <div class="row media_images news">
+        <div class="col-md-12 col-xs-12 mb-2">
+            <a href="/media-center/images" class="go-back-link">Back</a>
         </div>
-    {% else %}
-        {% if records.count() %}
-        <div class="row media_images news">
-            <div class="col-md-12 col-xs-12 mb-2">
-                <a href="/media-center" class="go-back-link">Back</a>
-            </div>
-            {% for record in records %}
 
-            <div class="col-md-4 col-xs-12 home-news-records">
+        {% if gallery.images %}
+        <div class="row">
+            {% for k, image in gallery.images %}
+            <article class="col-md-4 col-xs-12 home-news-records">
                 <div class="row news-item">
                     <div class="col-md-12 col-xs-12 home-news-cover">
-                        <a href="/media-center/images/{{record.id}}">
-                            <img src="{{ record.images[0].path}}" alt="{{ record.name }}" aria-label="{{ record.name }}">
-                            <div class="btn read-more-btn btn-primary">View</div>
-                            <div class="blur_filter"></div>
-                        </a>
+                        <button type="button" onclick="openModal(); currentSlide({{ k + 1 }})" class="image-trigger" aria-label="View {{ image.name }} in full size">
+                            <img src="{{ image.path}}" alt="{{ image.name }}">
+                            <div class="btn zoom-btn btn-primary" aria-hidden="true"><img src="{{'zoom.svg'|media}}" alt="" class="zoom_icon"></div>
+                            <div class="blur_filter" aria-hidden="true"></div>
+                        </button>
                     </div>
-                    <div class="col-md-12 col-xs-12 news-content">
+                </div>
+            </article>
+            {% endfor %}
 
-                        <a href="/media-center/images/{{record.id}}">
-                            <div class="news-title">{{ record.name}}</div>
-                        </a>
+
+            <div class="control-popup modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <button type="button" class="close" onclick="closeModal()" aria-label="Close image gallery">&times;</button>
+                        <h3 id="modal-title" class="sr-only">Image gallery viewer</h3>
+                        {% for k, image in gallery.images %}
+                        <div class="slides">
+                            <img src="{{ image.path}}" alt="{{ image.name }}">
+                        </div>
+                        {% endfor %}
+                        <!-- Next/previous controls -->
+                        <button type="button" class="prev" onclick="plusSlides(-1)" aria-label="Previous image"></button>
+                        <button type="button" class="next" onclick="plusSlides(1)" aria-label="Next image"></button>
                     </div>
                 </div>
             </div>
 
-            {% else %}
-            {{ noRecordsMessage }}
-            {% endfor %}
         </div>
         {% endif %}
+    </div>
+    {% else %}
+    {% if records.count() %}
+    <div class="row media_images news">
+        <div class="col-md-12 col-xs-12 mb-2">
+            <a href="/media-center" class="go-back-link">Back</a>
+        </div>
+        {% for record in records %}
+
+        <article class="col-md-4 col-xs-12 home-news-records">
+            <div class="row news-item">
+                <div class="col-md-12 col-xs-12 home-news-cover">
+                    <a href="/media-center/images/{{record.id}}" aria-label="View {{ record.name }} gallery">
+                        <img src="{{ record.images[0].path}}" alt="{{ record.name }}">
+                        <div class="btn read-more-btn btn-primary" aria-hidden="true">View</div>
+                        <div class="blur_filter" aria-hidden="true"></div>
+                    </a>
+                </div>
+                <div class="col-md-12 col-xs-12 news-content">
+
+                    <a href="/media-center/images/{{record.id}}">
+                        <div class="news-title">{{ record.name}}</div>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        {% else %}
+        {{ noRecordsMessage }}
+        {% endfor %}
+    </div>
     {% endif %}
-</div>
+    {% endif %}
+</section>
 

@@ -36,7 +36,8 @@ function onStart(){
 {% set records = mediaPressreleasesList %}
 
 {% if records.count %}
-<div class="container" role="contentinfo">
+<section class="container" aria-labelledby="press-releases-heading">
+    <h2 id="press-releases-heading" class="sr-only">Press releases</h2>
 
     <div class="row press-relieses-container">
 
@@ -44,7 +45,7 @@ function onStart(){
         {% for record in records %}
         {# Use spaceless tag to remove spaces inside the A tag. #}
         {% spaceless %}
-        <div class="col-xs-12">
+        <article class="col-xs-12">
             <div class="press-relies-item">
                 <span class="date"> {{record.date |date('d F Y')}}</span> <br><br>
                 <span class="card_title">{{record.name}}</span><br><br>
@@ -52,19 +53,19 @@ function onStart(){
                 <div class="body">{{record.description | raw}}</div>
                 <div class="row link">
                     {% for link in record.link %}
-                    <a href="{{link.url}}" target="_blank" class="btn btn-primary">{{link.text}}</a>
+                    <a href="{{link.url}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">{{link.text}}</a>
                     {% endfor %}
                 </div>
             </div>
-        </div>
+        </article>
 
 
         {% endspaceless %}
         {% endfor %}
     </div>
-</div>
+</section>
 {% else %}
-<div class="container-fluid bg-secondary coming_soon" role="contentinfo">
+<section class="container-fluid bg-secondary coming_soon" aria-label="Coming soon">
     {% component 'jumbotron' %}
-</div>
+</section>
 {% endif %}

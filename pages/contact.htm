@@ -17,14 +17,15 @@ function onStart(){
 ?>
 ==
 {% component 'siteSearchInclude' %}
-<div class="container800">
+<section class="container800" aria-labelledby="coordinators-heading">
+    <h2 id="coordinators-heading" class="sr-only">Project coordinators</h2>
     <div class="row center-xs">
         {% for profile in profiles %}
-        <div class="col-md-5 col-xs-12 profile-item">
+        <article class="col-md-5 col-xs-12 profile-item">
             <div class="row contact_info">
                 <div class="coordinator_image">
-                    <img src="{{profile.avatar.thumb(298, 312, {'mode' : 'crop' })}}" alt="{{profile.names}}" aria-label="{{profile.names}}">
-                    <div class="uni_label"></div>
+                    <img src="{{profile.avatar.thumb(298, 312, {'mode' : 'crop' })}}" alt="{{profile.names}}">
+                    <div class="uni_label" aria-hidden="true"></div>
                 </div>
                 <div class="coordinator_info">
                     <div>
@@ -33,15 +34,15 @@ function onStart(){
                     </div>
                     <div>
                         {% if profile.email %}
-                        <a href="mailto:{{profile.email}}" class="btn btn-primary mail">
-                            <i></i>{{profile.email}}
+                        <a href="mailto:{{profile.email}}" class="btn btn-primary mail" aria-label="Email {{profile.names}}">
+                            <i aria-hidden="true"></i>{{profile.email}}
                         </a>
                         {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
         {% endfor %}
     </div>
 
-</div>
+</section>
