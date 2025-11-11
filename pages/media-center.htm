@@ -114,6 +114,22 @@ return Response::download($pathToFile, $fileName, $headers);
         {% endif %}
 
 
+        {% if newsletters.count() %}
+        <div class="col-md-4 col-xs-12">
+            <div class="row media-item">
+                <div class="col-md-12 col-xs-12 mb-2 media-cover">
+                    <a href="{{'newsletters'|page}}">
+                        <img src="{{'Brand-Kit.png'|media}}" alt="Newsletters icon" title="Newsletters" aria-label="Newsletters">
+                        <div class="btn read-more-btn btn-primary">Open</div>
+                        <div class="blur_filter"></div>
+                        <div class="media-title">Newsletters</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
 <!--        {% if pressreleases.count() %}-->
 <!--        <div class="col-md-4 col-xs-12">-->
 <!--            <div class="row media-item">-->
