@@ -6,7 +6,6 @@ robot_index = "index"
 robot_follow = "follow"
 
 [builderList mediaImagesList]
-modelClass = "pensoft\Media\Models\Graphic"
 modelClass = "pensoft\Media\Models\Galleries"
 scope = "-"
 scopeValue = "{{ :scope }}"
@@ -76,7 +75,6 @@ return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
-
 {% set records = mediaImagesList %}
 
 <section class="container media-images-container" aria-labelledby="images-heading">
@@ -93,11 +91,11 @@ return Response::download($pathToFile, $fileName, $headers);
             <article class="col-md-4 col-xs-12 home-news-records">
                 <div class="row news-item">
                     <div class="col-md-12 col-xs-12 home-news-cover">
-                        <button type="button" onclick="openModal(); currentSlide({{ k + 1 }})" class="image-trigger" aria-label="View {{ image.name }} in full size">
+                        <a type="button" onclick="openModal(); currentSlide({{ k + 1 }})" class="image-trigger" aria-label="View {{ image.name }} in full size">
                             <img src="{{ image.path}}" alt="{{ image.name }}">
                             <div class="btn zoom-btn btn-primary" aria-hidden="true"><img src="{{'zoom.svg'|media}}" alt="" class="zoom_icon"></div>
                             <div class="blur_filter" aria-hidden="true"></div>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </article>
@@ -107,7 +105,7 @@ return Response::download($pathToFile, $fileName, $headers);
             <div class="control-popup modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-modal="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <button type="button" class="close" onclick="closeModal()" aria-label="Close image gallery">&times;</button>
+                        <a type="button" class="close" onclick="closeModal()" aria-label="Close image gallery">&times;</a>
                         <h3 id="modal-title" class="sr-only">Image gallery viewer</h3>
                         {% for k, image in gallery.images %}
                         <div class="slides">
@@ -115,8 +113,8 @@ return Response::download($pathToFile, $fileName, $headers);
                         </div>
                         {% endfor %}
                         <!-- Next/previous controls -->
-                        <button type="button" class="prev" onclick="plusSlides(-1)" aria-label="Previous image"></button>
-                        <button type="button" class="next" onclick="plusSlides(1)" aria-label="Next image"></button>
+                        <a type="button" class="prev" onclick="plusSlides(-1)" aria-label="Previous image"></a>
+                        <a type="button" class="next" onclick="plusSlides(1)" aria-label="Next image"></a>
                     </div>
                 </div>
             </div>
@@ -157,4 +155,3 @@ return Response::download($pathToFile, $fileName, $headers);
     {% endif %}
     {% endif %}
 </section>
-
