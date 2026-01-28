@@ -456,6 +456,31 @@ $(document).ready(function() {
         }
     });
 
+    // Consortium videos carousel
+    if ($('.consortium-videos-carousel').length) {
+        $('.consortium-videos-carousel').slick({
+            autoplay: false,
+            draggable: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: true,
+            dots: false,
+            prevArrow: '<button type="button" class="slick-prev" aria-label="Previous video"></button>',
+            nextArrow: '<button type="button" class="slick-next" aria-label="Next video"></button>',
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: { slidesToShow: 2, slidesToScroll: 1, arrows: true, dots: false }
+                },
+                {
+                    breakpoint: 768,
+                    settings: { slidesToShow: 1, slidesToScroll: 1, arrows: false, dots: true }
+                }
+            ]
+        });
+    }
 
 });
 

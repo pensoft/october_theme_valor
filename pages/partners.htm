@@ -8,10 +8,18 @@ header_image = "about.jpg"
 ==
 <?php
 use Pensoft\Partners\Models\Partners;
+use Pensoft\Media\Models\Videos;
+use Pensoft\Media\Models\VideosCategory;
 
 function onStart(){
 	$this['partners'] =  Partners::where('type', 1)->get();
 	$this['a_partners'] =  Partners::where('type', 2)->get();
+    $category = VideosCategory::where('name', 'Consortium')->first();
+    if ($category) {
+        $this['consortiumVideos'] = Videos::where('category_id', $category->id)->limit(20)->get();
+    } else {
+        $this['consortiumVideos'] = collect([]);
+    }
 }
 ?>
 ==
@@ -66,3 +74,43 @@ function onStart(){
     </div>
 
 </section>
+
+{% if consortiumVideos is not empty %}
+<section class="container consortium-videos-section" data-aos="fade-up">
+    <h2>Meet the consortium</h2>
+    <div class="consortium-videos-carousel">
+        {% for video in consortiumVideos %}
+            <div class="consortium-video-item">
+                <div class="consortium-video-wrapper">
+                    {% if video.youtube_url %}
+                        <iframe
+                            src="{{ video.youtube_url }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            title="{{ video.name }}"
+                            aria-label="YouTube video: {{ video.name }}">
+                        </iframe>
+                    {% elseif video.vimeo_url %}
+                        <iframe
+                            src="{{ video.vimeo_url }}"
+                            frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen
+                            title="{{ video.name }}"
+                            aria-label="Vimeo video: {{ video.name }}">
+                        </iframe>
+                    {% elseif video.file %}
+                        <video controls title="{{ video.name }}" aria-label="Video: {{ video.name }}">
+                            <source src="{{ video.file.path }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                </div>
+                <p class="consortium-video-title">{{ video.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <p class="consortium-videos-hashtag">#VALORpartners</p>
+</section>
+{% endif %}
