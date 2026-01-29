@@ -147,6 +147,9 @@
         .breakpoint-large-down({
             margin-left: 0;
         });
+        .breakpoint-medium-down({
+            text-align: center;
+        });
     }
 
     .consortium-videos-hashtag {
@@ -159,14 +162,18 @@
         .breakpoint-large-down({
             margin-right: 0;
         });
+        .breakpoint-medium-down({
+            text-align: center;
+        });
     }
 }
 
 .consortium-videos-carousel {
-    display: flex;
-    justify-content: start;
     .consortium-video-item {
         padding: 0 10px;
+        .breakpoint-medium-down({
+            padding: 0;
+        });
     }
 
     .consortium-video-wrapper {
@@ -210,7 +217,7 @@
         width: 40px;
         height: 40px;
         background-size: 40px 40px;
-        top: 35%;
+        top: 40%;
         transform: translateY(-50%);
         margin-top: 0;
     }
@@ -230,6 +237,39 @@
         }
         .slick-dots {
             bottom: -30px;
+            li {
+                width: 16px;
+                height: 16px;
+                margin: 0 8px;
+                button {
+                    width: 16px;
+                    height: 16px;
+                    padding: 0;
+                    &:before {
+                        font-size: 16px;
+                        width: 16px;
+                        height: 16px;
+                        line-height: 16px;
+                    }
+                }
+            }
         }
+        margin-bottom: 40px;
     });
+
+    &.no-carousel {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 70px;
+        .breakpoint-large-down({
+            padding: 0;
+        });
+
+        .consortium-video-item {
+            width: 50%;
+            .breakpoint-medium-down({
+                width: 100%;
+            });
+        }
+    }
 }

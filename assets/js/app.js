@@ -458,11 +458,13 @@ $(document).ready(function() {
 
     // Consortium videos carousel
     if ($('.consortium-videos-carousel').length) {
-        $('.consortium-videos-carousel').slick({
+        var $carousel = $('.consortium-videos-carousel');
+        if ($carousel.find('.consortium-video-item').length >= 2) {
+        $carousel.slick({
             autoplay: false,
             draggable: true,
             infinite: true,
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 1,
             speed: 500,
             arrows: true,
@@ -480,6 +482,9 @@ $(document).ready(function() {
                 }
             ]
         });
+        } else {
+            $carousel.addClass('no-carousel');
+        }
     }
 
 });
