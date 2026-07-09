@@ -76,6 +76,36 @@ nav:not(.navbar){
             line-height: 150%;
             letter-spacing: -0.16px;
         }
+
+        a{
+                strong{
+                    color: @white-color;
+                    background-color: @button-background-color;
+                    border-color: @button-background-color;
+                    border-radius: 10px;
+                    /* Shadow/xs */
+                    box-shadow: 0px 1px 2px 0px rgba(198, 228, 246, 0.05);
+
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 100%; /* 16px */
+                    letter-spacing: -0.48px;
+                    display: flex;
+                    width: fit-content;
+                    height: 50px;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 20px;
+
+                    &:hover, &.active {
+                        color: @white-color;
+                        background-color: @yellow-color;
+                        border-color: @yellow-color;
+                    }
+                }
+            }
+
         .breakpoint-small-down({
             margin-left: 0px;
         });
