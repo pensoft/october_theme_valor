@@ -133,6 +133,45 @@
         font-family: 'LiberationSans';
     }
 
+    .author_item--hidden {
+        display: none;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 0.35s ease, transform 0.35s ease;
+
+        &.is-revealed {
+            display: inline-flex;
+        }
+
+        &.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .text-ligth .authors-toggle {
+        border-radius: 100px;
+        border: 1px solid #DED6BC;
+        color: #766B48;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 115%;
+        letter-spacing: -0.28px;
+        padding: 8px 16px;
+        margin-bottom: 8px;
+        display: inline-flex;
+        white-space: nowrap;
+        text-decoration: none;
+        cursor: pointer;
+        font-family: 'LiberationSans';
+
+        &:hover,
+        &:focus {
+            background: #DED6BC;
+            text-decoration: none;
+        }
+    }
+
     .body{
         div {
             //display: inline-flex;
