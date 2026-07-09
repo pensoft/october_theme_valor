@@ -688,7 +688,8 @@ function initLibraryAuthors() {
         }
 
         var $hidden = $authors.slice(LIBRARY_AUTHORS_VISIBLE).addClass('author_item--hidden');
-        var $toggle = $('<a href="#" class="authors-toggle">+ View all</a>').appendTo($authorsField);
+        var $counter = $('<span class="authors-more">+' + $hidden.length + ' more</span>').appendTo($authorsField);
+        var $toggle = $('<a href="#" class="authors-toggle">View all</a>').appendTo($authorsField);
 
         $toggle.on('click', function (e) {
             e.preventDefault();
@@ -698,7 +699,8 @@ function initLibraryAuthors() {
                 setTimeout(function () {
                     $hidden.removeClass('is-revealed');
                 }, 350);
-                $toggle.removeClass('is-expanded').text('+ View all');
+                $counter.removeClass('is-hidden');
+                $toggle.removeClass('is-expanded').text('View all');
                 return;
             }
 
@@ -707,7 +709,8 @@ function initLibraryAuthors() {
             });
             $hidden[0].offsetHeight; // flush the display change before transitioning opacity
             $hidden.addClass('is-visible');
-            $toggle.addClass('is-expanded').text('– View less');
+            $counter.addClass('is-hidden');
+            $toggle.addClass('is-expanded').text('View less');
         });
     });
 }
