@@ -194,22 +194,11 @@ $(document).ready(function() {
         $(value).find('a').attr( "onclick", "window.open(this.href, '_blank');" )
     });
 
-    // $('.text-ligth').each(function(){
-    $('.library-item').each(function(){
-        // Select the element with the class .custom-field-text
-        var element = $(this).find('.text-ligth');
+    initLibraryAuthors();
 
-        // Check if the element exists to avoid errors
-        if (element) {
-            // Split the text content by commas
-
-            var texts = $(element[0]).text().split(',');
-
-            // // Wrap each text piece with <b> tags and join them back into a string
-            var boldTexts = texts.map(text => `<span class="author_item">${text}</span>`).join('');
-            // // Update the HTML content of the original element
-            $(element[0]).html(boldTexts);
-        }
+    // The library list is re-rendered by the filter/search/sort AJAX partial
+    $(document).on('ajaxUpdateComplete', function () {
+        initLibraryAuthors();
     });
 
     $('.events .tabs').each(function(){
@@ -674,6 +663,53 @@ function hideSearchForm(){
     $('.navbar a.p-search').css('visibility', 'visible');
 	// $('#menu li').show();
     // $('nav a').show();
+}
+
+var LIBRARY_AUTHORS_VISIBLE = 2;
+
+function initLibraryAuthors() {
+    $('.library-item').each(function () {
+        var $authorsField = $(this).find('.text-ligth').first();
+
+        if (!$authorsField.length || $authorsField.hasClass('authors-ready')) {
+            return;
+        }
+        $authorsField.addClass('authors-ready');
+
+        // Split the comma separated author names into individual pills
+        var names = $authorsField.text().split(',');
+        $authorsField.html(names.map(function (name) {
+            return '<span class="author_item">' + name + '</span>';
+        }).join(''));
+
+        var $authors = $authorsField.find('.author_item');
+        if ($authors.length <= LIBRARY_AUTHORS_VISIBLE) {
+            return;
+        }
+
+        var $hidden = $authors.slice(LIBRARY_AUTHORS_VISIBLE).addClass('author_item--hidden');
+        var $toggle = $('<a href="#" class="authors-toggle">+ View all</a>').appendTo($authorsField);
+
+        $toggle.on('click', function (e) {
+            e.preventDefault();
+
+            if ($toggle.hasClass('is-expanded')) {
+                $hidden.removeClass('is-visible');
+                setTimeout(function () {
+                    $hidden.removeClass('is-revealed');
+                }, 350);
+                $toggle.removeClass('is-expanded').text('+ View all');
+                return;
+            }
+
+            $hidden.each(function (i) {
+                $(this).css('transition-delay', Math.min(i, 12) * 30 + 'ms').addClass('is-revealed');
+            });
+            $hidden[0].offsetHeight; // flush the display change before transitioning opacity
+            $hidden.addClass('is-visible');
+            $toggle.addClass('is-expanded').text('– View less');
+        });
+    });
 }
 
 function requestFormLibrary() {
