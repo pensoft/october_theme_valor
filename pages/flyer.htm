@@ -89,6 +89,26 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% if record.file %}
                     <a href="{{record.file.path}}" target="_blank" rel="noopener noreferrer" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} (opens in new window)"><i aria-hidden="true"></i> Download</a>
                     {% endif %}
+                    {% if record.file_lang_versions.count() > 1 %}
+                    <div class="row middle-xs center-xs">
+                        {% for brochure in record.file_lang_versions %}
+
+                        {% set languages = brochure.title|split(' ') %}
+                        {% if brochure.path %}
+                        {{form_open({ request: 'onDownloadFile' }) }}
+                        <input type="hidden" value="{{brochure.id}}" name="id">
+                        <button type="submit"
+                                class="btn btn-primary"
+                                data-attach-loading
+                                aria-label="Download {{brochure.title}}"><i aria-hidden="true"></i> {{languages[0]}}</button>
+                        {{ form_close() }}
+                        {% endif %}
+                        &nbsp;
+                        {% endfor%}
+                    </div>
+
+                    {% endif %}
+
                 </div>
             </div>
         </article>
