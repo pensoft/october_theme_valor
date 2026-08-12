@@ -89,24 +89,15 @@ return Response::download($pathToFile, $fileName, $headers);
                 <div class="record_name">{{record.name}}</div>
                 <div class="links">
                     {% if record.file_jpg %}
-                    {{form_open({ request: 'onDownloadFile' }) }}
-                    <input type="hidden" value="{{record.file_jpg.id}}" name="id">
-                    <button type="submit" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} as JPG"><i aria-hidden="true"></i> JPG</button>
-                    {{ form_close() }}
+                    <a href="{{record.file_jpg.path}}" download="{{record.file_jpg.file_name}}" class="btn btn-primary" aria-label="Download {{record.name}} as JPG"><i aria-hidden="true"></i> JPG</a>
                     {% endif %}
 
                     {% if record.file_png %}
-                    {{form_open({ request: 'onDownloadFile' }) }}
-                    <input type="hidden" value="{{record.file_png.id}}" name="id">
-                    <button type="submit" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} as PNG"><i aria-hidden="true"></i> PNG</button>
-                    {{ form_close() }}
+                    <a href="{{record.file_png.path}}" download="{{record.file_png.file_name}}" class="btn btn-primary" aria-label="Download {{record.name}} as PNG"><i aria-hidden="true"></i> PNG</a>
                     {% endif %}
 
                     {% if record.file_eps %}
-                    {{form_open({ request: 'onDownloadFile' }) }}
-                    <input type="hidden" value="{{record.file_eps.id}}" name="id">
-                    <button type="submit" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} as SVG"><i aria-hidden="true"></i> SVG</button>
-                    {{ form_close() }}
+                    <a href="{{record.file_eps.path}}" download="{{record.file_eps.file_name}}" class="btn btn-primary" aria-label="Download {{record.name}} as SVG"><i aria-hidden="true"></i> SVG</a>
                     {% endif %}
 
                     {% if record.file_pdf %}

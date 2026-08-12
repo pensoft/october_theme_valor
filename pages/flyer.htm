@@ -95,14 +95,7 @@ return Response::download($pathToFile, $fileName, $headers);
 
                         {% set languages = brochure.title|split(' ') %}
                         {% if brochure.path %}
-                        {{form_open({ request: 'onDownloadFile' }) }}
-                        <a href="{{brochure.path}}" target="_blank" rel="noopener noreferrer" data-attach-loading class="btn btn-primary" aria-label="Download {{brochure.title}} {{languages[0]}} version (opens in new window)"><i aria-hidden="true"></i> {{languages[0]}}</a>
-<!--                        <input type="hidden" value="{{brochure.id}}" name="id">-->
-<!--                        <button type="submit"-->
-<!--                                class="btn btn-primary"-->
-<!--                                data-attach-loading-->
-<!--                                aria-label="Download {{brochure.title}}"><i aria-hidden="true"></i> {{languages[0]}}</button>-->
-                        {{ form_close() }}
+                        <a href="{{brochure.path}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Download {{brochure.title}} {{languages[0]}} version (opens in new window)"><i aria-hidden="true"></i> {{languages[0]}}</a>
                         {% endif %}
                         &nbsp;
                         {% endfor%}
