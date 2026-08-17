@@ -1,0 +1,53 @@
+url = "/download/:id|[0-9]+/:name?"
+title = "Download"
+is_hidden = 0
+robot_index = "noindex"
+robot_follow = "nofollow"
+==
+<?php
+use System\Models\File;
+
+/**
+ * Serves a public file attachment under a URL that ends with its original file
+ * name, e.g. /download/1234/VALOR-brochure-EN.pdf
+ *
+ * The :name segment is cosmetic - the file is resolved by :id alone - but it is
+ * the part Matomo records for a download, so the report shows the real file name
+ * instead of the hashed disk name. Links are built by
+ * partials/components/download-link.htm.
+ */
+function onStart()
+{
+	$file = File::find((int) $this->param('id'));
+
+	if (!$file || !$file->file_name || !$file->isPublic()) {
+		abort(404);
+	}
+
+	$localPath = $file->getLocalPath();
+
+	if (!file_exists($localPath)) {
+		abort(404);
+	}
+
+	$contentType = $file->getContentType() ?: 'application/octet-stream';
+
+	$response = Response::file($localPath, [
+		'Content-Type' => $contentType,
+		'Cache-Control' => 'public, max-age=86400',
+	]);
+
+	// Keep the previous behaviour of the direct storage links: let the browser
+	// display what it displays well, hand everything else over as a download.
+	$isInline = $contentType === 'application/pdf' || strpos($contentType, 'image/') === 0;
+
+	// Symfony appends the RFC 6266 filename* fallback for non-ASCII names itself.
+	$response->setContentDisposition(
+		$isInline ? 'inline' : 'attachment',
+		basename($file->file_name)
+	);
+
+	return $response;
+}
+?>
+==

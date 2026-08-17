@@ -17,49 +17,10 @@ pageNumber = "{{ :page }}"
 ==
 <?php
 use Pensoft\Media\Models\MediaLogos;
-use System\Models\File;
 
+// Files are served by the "download" page, see partials/components/download-link.htm
 function onStart(){
 	$this['mediaLogosList'] =  MediaLogos::get();
-	if(get('download')){
-		$file = File::find((int)get('download'));
-		$file_name = $file->getLocalPath();
-
-$ext= $file->getExtension();
-$recordName = get('file_name') ? get('file_name') : 'OBSGESSION_logo.'.$ext;
-
-if (file_exists($file_name)) {
-header('Content-Description: File Transfer');
-header('Content-Type: application/octet-stream');
-header("Content-Type: application/force-download");
-header('Content-Disposition: atntachment; filename='.$recordName);
-header('Content-Transfer-Encoding: binary');
-header('Expires: 0');
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Pragma: public');
-header('Content-Length: ' . filesize($file_name));
-ob_clean();
-flush();
-readfile($file_name);
-exit();
-}
-return Redirect::to('/logo');
-}
-}
-
-function onDownloadFile(){
-$file = File::find(post('id'));
-$pathToFile = $file->getLocalPath();
-$fileName = $file->file_name;
-$fileType = $file->content_type;
-$headers = [
-'HTTP/1.1 200 OK',
-'Pragma: public',
-'Content-Type: '.$fileType,
-'Content-Type: application/force-download'
-];
-
-return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
@@ -88,21 +49,13 @@ return Response::download($pathToFile, $fileName, $headers);
                 </div>
                 <div class="record_name">{{record.name}}</div>
                 <div class="links">
-                    {% if record.file_jpg %}
-                    <a href="{{record.file_jpg.path}}" download="{{record.file_jpg.file_name}}" class="btn btn-primary" aria-label="Download {{record.name}} as JPG"><i aria-hidden="true"></i> JPG</a>
-                    {% endif %}
+                    {% partial 'components/download-link' file=record.file_jpg label='JPG' title=record.name force=true %}
 
-                    {% if record.file_png %}
-                    <a href="{{record.file_png.path}}" download="{{record.file_png.file_name}}" class="btn btn-primary" aria-label="Download {{record.name}} as PNG"><i aria-hidden="true"></i> PNG</a>
-                    {% endif %}
+                    {% partial 'components/download-link' file=record.file_png label='PNG' title=record.name force=true %}
 
-                    {% if record.file_eps %}
-                    <a href="{{record.file_eps.path}}" download="{{record.file_eps.file_name}}" class="btn btn-primary" aria-label="Download {{record.name}} as SVG"><i aria-hidden="true"></i> SVG</a>
-                    {% endif %}
+                    {% partial 'components/download-link' file=record.file_eps label='SVG' title=record.name force=true %}
 
-                    {% if record.file_pdf %}
-                    <a href="{{record.file_pdf.path}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Download {{record.name}} as PDF (opens in new window)"><i aria-hidden="true"></i> PDF</a>
-                    {% endif %}
+                    {% partial 'components/download-link' file=record.file_pdf label='PDF' title=record.name newtab=true %}
                 </div>
             </div>
         </article>

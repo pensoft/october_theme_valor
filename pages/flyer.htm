@@ -17,49 +17,10 @@ pageNumber = "{{ :page }}"
 ==
 <?php
 use Pensoft\Media\Models\Flyers;
-use System\Models\File;
 
+// Files are served by the "download" page, see partials/components/download-link.htm
 function onStart(){
 	$this['mediaFlyersList'] =  Flyers::get();
-	if(get('download')){
-		$file = File::find((int)get('download'));
-		$file_name = $file->getLocalPath();
-$recordName = get('file_name') ? get('file_name') : 'OBSGESSION_flyer';
-$ext= $file->getExtension();
-
-if (file_exists($file_name)) {
-header('Content-Description: File Transfer');
-header('Content-Type: application/octet-stream');
-header("Content-Type: application/force-download");
-header('Content-Disposition: attachment; filename='.$recordName .'.'. $ext);
-header('Content-Transfer-Encoding: binary');
-header('Expires: 0');
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Pragma: public');
-header('Content-Length: ' . filesize($file_name));
-ob_clean();
-flush();
-readfile($file_name);
-exit();
-}
-return Redirect::to('/flyer');
-}
-
-}
-
-function onDownloadFile(){
-$file = File::find(post('id'));
-$pathToFile = $file->getLocalPath();
-$fileName = $file->file_name;
-$fileType = $file->content_type;
-$headers = [
-'HTTP/1.1 200 OK',
-'Pragma: public',
-'Content-Type: '.$fileType,
-'Content-Type: application/force-download'
-];
-
-return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
@@ -86,17 +47,13 @@ return Response::download($pathToFile, $fileName, $headers);
                 </div>
                 <div class="record_name">{{record.name}}</div>
                 <div class="links">
-                    {% if record.file %}
-                    <a href="{{record.file.path}}" target="_blank" rel="noopener noreferrer" data-attach-loading class="btn btn-primary" aria-label="Download {{record.name}} (opens in new window)"><i aria-hidden="true"></i> Download</a>
-                    {% endif %}
+                    {% partial 'components/download-link' file=record.file title=record.name newtab=true %}
                     {% if record.file_lang_versions.count() > 1 %}
                     <div class="row middle-xs center-xs">
                         {% for brochure in record.file_lang_versions %}
 
                         {% set languages = brochure.title|split(' ') %}
-                        {% if brochure.path %}
-                        <a href="{{brochure.path}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Download {{brochure.title}} {{languages[0]}} version (opens in new window)"><i aria-hidden="true"></i> {{languages[0]}}</a>
-                        {% endif %}
+                        {% partial 'components/download-link' file=brochure label=languages[0] title=brochure.title newtab=true %}
                         &nbsp;
                         {% endfor%}
                     </div>

@@ -15,8 +15,8 @@ use Pensoft\Media\Models\Pressreleases;
 use Pensoft\Media\Models\Videos;
 use Pensoft\Media\Models\Podcasts;
 use Pensoft\Media\Models\Graphic;
-use System\Models\File;
 
+// Files are served by the "download" page, see partials/components/download-link.htm
 function onStart(){
 	$this['logos'] =  MediaLogos::get();
 	$this['flyers'] =  Flyers::get();
@@ -26,25 +26,6 @@ function onStart(){
 	$this['videos'] =  Videos::get();
 	$this['podcasts'] =  Podcasts::get();
 	$this['images'] =  Graphic::get();
-
-
-
-
-}
-
-function onDownloadFile(){
-    $file = File::find(post('id'));
-    $pathToFile = $file->getLocalPath();
-$fileName = $file->file_name;
-$fileType = $file->content_type;
-$headers = [
-'HTTP/1.1 200 OK',
-'Pragma: public',
-'Content-Type: '.$fileType,
-'Content-Type: application/force-download'
-];
-
-return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==

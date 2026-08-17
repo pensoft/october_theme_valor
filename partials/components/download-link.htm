@@ -1,0 +1,32 @@
+{#
+    Download link that carries the original file name.
+
+    Matomo records the href of a clicked link, so pointing straight at
+    file.path reports the hashed disk name (e.g. 6f2a1bc0d3e4f5.pdf). Routing
+    through the "download" page instead keeps the real file name as the last
+    URL segment, so the Matomo downloads report shows it verbatim. The name is
+    also exposed to the user through the title/aria-label and the download
+    attribute.
+
+    Parameters:
+      file   - System\Models\File attachment; nothing is rendered when empty
+      label  - link text, defaults to "Download"
+      title  - record name used in the accessible label, defaults to the file name
+      class  - extra CSS classes, appended to "btn btn-primary"
+      noicon - true to drop the themed <i> icon that precedes the label
+      force  - true to add the download attribute so the browser saves the file
+               under its original name instead of displaying it
+      newtab - true to open the file in a new tab
+#}
+{%- if file -%}
+{%- set fileName = file.file_name -%}
+{%- set fileUrl = 'download'|page({ id: file.id, name: fileName|url_encode }, false) -%}
+{%- set recordName = title|default(fileName) -%}
+<a href="{{ fileUrl }}"
+   class="btn btn-primary{{ class ? ' ' ~ class }}"
+   title="{{ recordName }} ({{ fileName }})"
+   data-file-name="{{ fileName }}"
+   {% if force %}download="{{ fileName }}"{% endif %}
+   {% if newtab %}target="_blank" rel="noopener noreferrer"{% endif %}
+   aria-label="Download {{ recordName }}, file {{ fileName }}{{ newtab ? ' (opens in new window)' }}">{% if not noicon %}<i aria-hidden="true"></i> {% endif %}{{ label|default('Download') }}</a>
+{%- endif -%}
