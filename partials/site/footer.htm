@@ -11,8 +11,15 @@ jumbotron = "funding"
 background = "transperant"
 templates = "template3"
 description_limit = 0
+
+[cookieConsent]
+message = "This website uses cookies to ensure you get the best experience on our website."
+dismiss = "Got it!"
+learnMore = "Opt-out here"
+link = "/privacy-policy#cookies"
+theme = "dark-bottom"
 ==
-{% if this.page.id != 'login' %}
+{% if this.page.id != 'login' %}{% component 'cookieConsent' %}
 {% if this.theme.subscribe %}
 <section class="container-fluid subscriber">
     <video autoplay loop muted playsinline class="video-media" aria-label="Newsletter subscription background video">
